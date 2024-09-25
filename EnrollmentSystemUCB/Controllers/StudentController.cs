@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using EnrollmentSystemUCB.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EnrollmentSystemUCB.Controllers
 {
@@ -10,7 +11,7 @@ namespace EnrollmentSystemUCB.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Add()
+        public IActionResult Add(AddStudentViewModel viewModel)
         {
             return View();
         }
