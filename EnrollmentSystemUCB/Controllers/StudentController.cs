@@ -9,5 +9,10 @@ namespace EnrollmentSystemUCB.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult Add()
+        {
+            return View();
+        }
     }
 }
