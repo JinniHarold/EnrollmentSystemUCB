@@ -40,7 +40,7 @@ namespace EnrollmentSystemUCB.Controllers
             await dbContext.SaveChangesAsync();
 
             
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

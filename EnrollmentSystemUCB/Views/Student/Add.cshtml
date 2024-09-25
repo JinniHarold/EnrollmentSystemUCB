@@ -30,16 +30,16 @@
                 <label for="floatingPassword">Last Name:</label>
                 <span asp-validation-for="StudLName" class="text-danger"></span>
             </div>
-            @*Course Label and Drop Down*@
+            @* Course Label and Drop Down *@
             <div class="input-group mb-sm-3">
                 <label class="input-group-text" for="inputGroupSelect01">Course</label>
                 <select class="form-select" asp-for="StudCourse" id="inputGroupSelect01">
-                    <option selected>Choose...</option>
+                    <option selected value="">Choose...</option>
                     <option value="BSIT">BSIT</option>
                     <option value="BSIS">BSIS</option>
                     <option value="ACT">ACT</option>
                 </select>
-                <span asp-validation-for="StudYear" class="text-danger"></span>
+                <span asp-validation-for="StudCourse" class="text-danger"></span>
             </div>
             @*Year TextBox*@
             <div class="form-floating mb-sm-3">
