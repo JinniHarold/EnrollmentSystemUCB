@@ -7,7 +7,7 @@ namespace EnrollmentSystemUCB.Models
         [Required(ErrorMessage = "First name is required.")]
         public string StudFName { get; set; }
 
-        public string StudMInitial { get; set; }
+        public string ? StudMInitial { get; set; }
 
         [Required(ErrorMessage = "Last name is required.")]
         public string StudLName { get; set; }
