@@ -16,6 +16,7 @@
         <div class="form-floating mb-sm-3">
             <input type="text" class="form-control" asp-for="StudFName">
             <label for="floatingPassword">First Name:</label>
+            <span asp-validation-for="StudFName" class="text-danger"></span>
         </div>
         @*Middle Name TextBox*@
         <div class="form-floating mb-sm-3">
@@ -26,6 +27,7 @@
         <div class="form-floating mb-sm-3">
             <input type="text" class="form-control" asp-for="StudLName">
             <label for="floatingPassword">Last Name:</label>
+            <span asp-validation-for="StudLName" class="text-danger"></span>
         </div>
         @*Course Label and Drop Down*@
         <div class="input-group mb-sm-3">
@@ -37,11 +39,13 @@
                 <option value="3">ACT</option>
             </select>
             <input type="text" class="form-control" asp-for="StudCourse">
+            <span asp-validation-for="StudCourse" class="text-danger"></span>
         </div>
         @*Year TextBox*@
         <div class="form-floating mb-sm-3">
             <input type="text" class="form-control" asp-for="StudYear">
             <label for="floatingPassword">Year:</label>
+            <span asp-validation-for="StudYear" class="text-danger"></span>
         </div>
         
         <input class="btn btn-primary" type="submit" value="Save">
