@@ -52,8 +52,26 @@ namespace EnrollmentSystemUCB.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(Guid Id)
         {
-            var students = await dbContext.Students.ToListAsync();
-            return View(students);
+            var student = await dbContext.Students.FindAsync(Id);
+
+            return View(student);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(Student viewModel)
+        {
+            var student = await dbContext.Students.FindAsync(viewModel.Id);
+
+            if (student is not null)
+            {
+                student.StudFName = viewModel.StudFName;
+                student.StudMInitial = viewModel.StudMInitial;
+                student.StudLName = viewModel.StudLName;
+                student.StudCourse = viewModel.StudCourse;
+                student.StudYear = viewModel.StudYear;
+
+                await dbContext.SaveChangesAsync();
+            }
+            return RedirectToAction("List", "Student");
         }
     }
 }
