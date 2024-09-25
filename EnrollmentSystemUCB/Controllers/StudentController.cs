@@ -2,6 +2,7 @@
 using EnrollmentSystemUCB.Models;
 using EnrollmentSystemUCB.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace EnrollmentSystemUCB.Controllers
 {
@@ -41,6 +42,11 @@ namespace EnrollmentSystemUCB.Controllers
 
             
             return RedirectToAction("Index", "Home");
+        }
+        [HttpGet]
+        public async Task<IActionResult> List()
+        {
+            var students = await dbContext.Students.ToListAsync();
         }
     }
 }
