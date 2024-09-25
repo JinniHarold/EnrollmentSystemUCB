@@ -1,0 +1,49 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model EnrollmentSystemUCB.Models.AddStudentViewModel
+
+<div class="text-center">
+    <h1 class="display-4">Welcome University of Cebu</h1>
+    <h1 class="display-4">Student Entry</h1>
+
+    <div class="d-grid gap-2 d-md-block">
+        
+        @*First Name TextBox*@
+        <div class="form-floating mb-sm-3">
+            <input type="text" class="form-control" asp-for="StudFirstName">
+            <label for="floatingPassword">First Name:</label>
+        </div>
+        @*Middle Name TextBox*@
+        <div class="form-floating mb-sm-3">
+            <input type="text" class="form-control" asp-for="StudMidName">
+            <label for="floatingPassword">Middle Name:</label>
+        </div>
+        @*Last Name TextBox*@
+        <div class="form-floating mb-sm-3">
+            <input type="text" class="form-control" asp-for="StudLastName">
+            <label for="floatingPassword">Last Name:</label>
+        </div>
+        @*Course Label and Drop Down*@
+        <div class="input-group mb-sm-3">
+            <label class="input-group-text" for="inputGroupSelect01">Course</label>
+            <select class="form-select" id="inputGroupSelect01">
+                <option selected>Choose...</option>
+                <option value="1">BSIT</option>
+                <option value="2">BSIS</option>
+                <option value="3">ACT</option>
+            </select>
+            <input type="text" class="form-control" asp-for="StudCourse">
+        </div>
+        @*Year TextBox*@
+        <div class="form-floating mb-sm-3">
+            <input type="text" class="form-control" asp-for="StudYear">
+            <label for="floatingPassword">Year:</label>
+        </div>
+        
+        <input class="btn btn-primary" type="submit" value="Save">
+        <input class="btn btn-primary" type="submit" value="Clear">
+    </div>
