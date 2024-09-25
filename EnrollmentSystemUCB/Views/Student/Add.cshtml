@@ -6,48 +6,52 @@
 
 @model EnrollmentSystemUCB.Models.AddStudentViewModel
 
-<div class="text-center">
-    <h1 class="display-4">Welcome University of Cebu</h1>
-    <h1 class="display-4">Student Entry</h1>
+<form method="post">
+    <div class="text-center">
+        <h1 class="display-4">Welcome University of Cebu</h1>
+        <h1 class="display-4">Student Entry</h1>
 
-    <div class="d-grid gap-2 d-md-block">
-        
-        @*First Name TextBox*@
-        <div class="form-floating mb-sm-3">
-            <input type="text" class="form-control" asp-for="StudFName">
-            <label for="floatingPassword">First Name:</label>
-            <span asp-validation-for="StudFName" class="text-danger"></span>
+        <div class="d-grid gap-2 d-md-block">
+
+            @*First Name TextBox*@
+            <div class="form-floating mb-sm-3">
+                <input type="text" class="form-control" asp-for="StudFName">
+                <label for="floatingPassword">First Name:</label>
+                <span asp-validation-for="StudFName" class="text-danger"></span>
+            </div>
+            @*Middle Name TextBox*@
+            <div class="form-floating mb-sm-3">
+                <input type="text" class="form-control" asp-for="StudMInitial">
+                <label for="floatingPassword">Middle Name:</label>
+            </div>
+            @*Last Name TextBox*@
+            <div class="form-floating mb-sm-3">
+                <input type="text" class="form-control" asp-for="StudLName">
+                <label for="floatingPassword">Last Name:</label>
+                <span asp-validation-for="StudLName" class="text-danger"></span>
+            </div>
+            @*Course Label and Drop Down*@
+            <div class="input-group mb-sm-3">
+                <label class="input-group-text" for="inputGroupSelect01">Course</label>
+                <select class="form-select" id="inputGroupSelect01">
+                    <option selected>Choose...</option>
+                    <option value="1">BSIT</option>
+                    <option value="2">BSIS</option>
+                    <option value="3">ACT</option>
+                </select>
+                <input type="text" class="form-control" asp-for="StudCourse">
+                <span asp-validation-for="StudCourse" class="text-danger"></span>
+            </div>
+            @*Year TextBox*@
+            <div class="form-floating mb-sm-3">
+                <input type="text" class="form-control" asp-for="StudYear">
+                <label for="floatingPassword">Year:</label>
+                <span asp-validation-for="StudYear" class="text-danger"></span>
+            </div>
+
+            <input class="btn btn-primary" type="submit" value="Save">
+            <input class="btn btn-primary" type="submit" value="Clear">
         </div>
-        @*Middle Name TextBox*@
-        <div class="form-floating mb-sm-3">
-            <input type="text" class="form-control" asp-for="StudMInitial">
-            <label for="floatingPassword">Middle Name:</label>
-        </div>
-        @*Last Name TextBox*@
-        <div class="form-floating mb-sm-3">
-            <input type="text" class="form-control" asp-for="StudLName">
-            <label for="floatingPassword">Last Name:</label>
-            <span asp-validation-for="StudLName" class="text-danger"></span>
-        </div>
-        @*Course Label and Drop Down*@
-        <div class="input-group mb-sm-3">
-            <label class="input-group-text" for="inputGroupSelect01">Course</label>
-            <select class="form-select" id="inputGroupSelect01">
-                <option selected>Choose...</option>
-                <option value="1">BSIT</option>
-                <option value="2">BSIS</option>
-                <option value="3">ACT</option>
-            </select>
-            <input type="text" class="form-control" asp-for="StudCourse">
-            <span asp-validation-for="StudCourse" class="text-danger"></span>
-        </div>
-        @*Year TextBox*@
-        <div class="form-floating mb-sm-3">
-            <input type="text" class="form-control" asp-for="StudYear">
-            <label for="floatingPassword">Year:</label>
-            <span asp-validation-for="StudYear" class="text-danger"></span>
-        </div>
-        
-        <input class="btn btn-primary" type="submit" value="Save">
-        <input class="btn btn-primary" type="submit" value="Clear">
-    </div>
+</form>
+
+
