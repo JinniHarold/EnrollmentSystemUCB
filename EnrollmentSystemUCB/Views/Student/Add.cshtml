@@ -17,7 +17,7 @@
             <div class="form-floating mb-sm-3">
                 <input type="text" class="form-control" asp-for="StudFName">
                 <label for="floatingPassword">First Name:</label>
-                <span asp-validation-for="StudFName" class="text-danger"></span>
+                <span asp-validation-for="StudFName" class="text-danger">PLEASE INPUT FIRST NAME</span>
             </div>
             @*Middle Name TextBox*@
             <div class="form-floating mb-sm-3">
@@ -28,25 +28,24 @@
             <div class="form-floating mb-sm-3">
                 <input type="text" class="form-control" asp-for="StudLName">
                 <label for="floatingPassword">Last Name:</label>
-                <span asp-validation-for="StudLName" class="text-danger"></span>
+                <span asp-validation-for="StudLName" class="text-danger">PLEASE INPUT LAST NAME</span>
             </div>
             @*Course Label and Drop Down*@
             <div class="input-group mb-sm-3">
                 <label class="input-group-text" for="inputGroupSelect01">Course</label>
-                <select class="form-select" id="inputGroupSelect01">
+                <select class="form-select" asp-for="StudCourse" id="inputGroupSelect01">
                     <option selected>Choose...</option>
                     <option value="1">BSIT</option>
                     <option value="2">BSIS</option>
                     <option value="3">ACT</option>
                 </select>
-                <input type="text" class="form-control" asp-for="StudCourse">
-                <span asp-validation-for="StudCourse" class="text-danger"></span>
+                <span asp-validation-for="StudYear" class="text-danger">PLEASE INPUT COURSE</span>
             </div>
             @*Year TextBox*@
             <div class="form-floating mb-sm-3">
                 <input type="text" class="form-control" asp-for="StudYear">
                 <label for="floatingPassword">Year:</label>
-                <span asp-validation-for="StudYear" class="text-danger"></span>
+                <span asp-validation-for="StudYear" class="text-danger">PLEASE INPUT YEAR</span>
             </div>
 
             <input class="btn btn-primary" type="submit" value="Save">
