@@ -22,19 +22,25 @@ namespace EnrollmentSystemUCB.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(AddStudentViewModel viewModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(viewModel);
+            }
+
             var student = new Student
             {
                 StudFName = viewModel.StudFName,
                 StudMInitial = viewModel.StudMInitial,
                 StudLName = viewModel.StudLName,
                 StudCourse = viewModel.StudCourse,
-                StudYear = viewModel.StudYear,
+                StudYear = viewModel.StudYear
             };
 
             await dbContext.Students.AddAsync(student);
             await dbContext.SaveChangesAsync();
 
-            return View();
+            
+            return RedirectToAction("Index");
         }
     }
 }
