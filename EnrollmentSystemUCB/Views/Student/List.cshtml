@@ -23,14 +23,14 @@
         @foreach(var student in Model)
         {
             <tr>
-                <td>@student.Id</td
+                <td>@student.Id</td>
                 <td>@student.StudFName</td>
                 <td>@student.StudLName</td>
                 <td>@student.StudMInitial</td>
                 <td>@student.StudCourse</td>
                 <td>@student.StudYear</td>
                 <td>
-                    <button type="button" class="btn btn-primary" asp-controller="Student" asp-action="Edit">Edit</button>
+                    <a class="btn btn-primary" asp-controller="Student" asp-action="Edit">Edit</a>
                 </td>
             </tr>
         }
