@@ -41,12 +41,19 @@ namespace EnrollmentSystemUCB.Controllers
             await dbContext.SaveChangesAsync();
 
             
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("List", "Student");
         }
         [HttpGet]
         public async Task<IActionResult> List()
         {
             var students = await dbContext.Students.ToListAsync();
+            return View(students);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Edit(Guid Id)
+        {
+            var students = await dbContext.Students.ToListAsync();
+            return View(students);
         }
     }
 }
