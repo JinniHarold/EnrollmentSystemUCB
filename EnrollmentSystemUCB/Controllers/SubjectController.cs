@@ -40,9 +40,8 @@ namespace EnrollmentSystemUCB.Controllers
 
             };
 
-            await dbContext.Subject.AddAsync(subject);
+            await dbContext.Subjects.AddAsync(subject);
             await dbContext.SaveChangesAsync();
-
 
             return View();
         }
