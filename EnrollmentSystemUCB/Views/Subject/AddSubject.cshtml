@@ -18,7 +18,7 @@
                 <input type="text" class="form-control" asp-for="SubjectCode">
                 <label for="floatingPassword">Subject Code:</label>
                 <span asp-validation-for="SubjectCode" class="text-danger"></span>
-            </div
+            </div>
              @*Subject Description*@
             <div class="form-floating mb-sm-3">
                 <input type="text" class="form-control" asp-for="SubjectDescription">
@@ -33,7 +33,7 @@
             </div>
             @* Subject Offering Drop Down *@
             <div class="input-group mb-sm-3">
-                <label class="input-group-text" for="inputGroupSelect01">Course</label>
+                <label class="input-group-text" for="inputGroupSelect01">Offering</label>
                 <select class="form-select" asp-for="SubjectOffering" id="inputGroupSelect01">
                     <option selected value="">Choose...</option>
                     <option value="1st Sem">1st Semester</option>
@@ -44,7 +44,7 @@
             </div>
             @* Category Drop Down *@
             <div class="input-group mb-sm-3">
-                <label class="input-group-text" for="inputGroupSelect01">Course</label>
+                <label class="input-group-text" for="inputGroupSelect01">Category</label>
                 <select class="form-select" asp-for="SubjectCategory" id="inputGroupSelect01">
                     <option selected value="">Choose...</option>
                     <option value="LEC">LECTURE</option>
@@ -66,7 +66,7 @@
             @*Subject Curr Year*@
             <div class="form-floating mb-sm-3">
                 <input type="text" class="form-control" asp-for="SubjectCurrYear">
-                <label for="floatingPassword">Units:</label>
+                <label for="floatingPassword">Curriculum Year:</label>
                 <span asp-validation-for="SubjectCurrYear" class="text-danger"></span>
             </div>
 
