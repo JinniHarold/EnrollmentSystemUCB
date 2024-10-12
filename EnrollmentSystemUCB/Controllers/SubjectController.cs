@@ -42,7 +42,7 @@ namespace EnrollmentSystemUCB.Controllers
             await dbContext.Subjects.AddAsync(subject);
             await dbContext.SaveChangesAsync();
 
-            return View();
+            return RedirectToAction("ListSubject", "Subject");
         }
         [HttpGet]
         public async Task<IActionResult> ListSubject()
