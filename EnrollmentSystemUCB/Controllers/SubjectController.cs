@@ -37,7 +37,6 @@ namespace EnrollmentSystemUCB.Controllers
                 SubjectCategory = viewModel.SubjectCategory,
                 SubjectCourse = viewModel.SubjectCourse,
                 SubjectCurrYear = viewModel.SubjectCurrYear,
-
             };
 
             await dbContext.Subjects.AddAsync(subject);
