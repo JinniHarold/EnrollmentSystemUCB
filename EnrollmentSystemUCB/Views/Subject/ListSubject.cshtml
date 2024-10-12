@@ -1,0 +1,43 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model List<EnrollmentSystemUCB.Models.Entities.Subject>
+
+<h1>LIST OF SUBJECTS BRO</h1>
+<table class="table caption-top">
+    <thead>
+        <tr>
+            <th>Subject Code</th>
+            <th>Description</th>
+            <th>Units</th>
+            <th>Category</th>
+            <th>Offering</th>
+            <th>Course</th>
+            <th>Curriculum Year</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var subject in Model)
+        {
+            <tr>
+                <td>@subject.SubjectCode</td>
+                <td>@subject.SubjectDescription</td>
+                <td>@subject.SubjectUnits</td>
+                <td>@subject.SubjectCategory</td>
+                <td>@subject.SubjectOffering</td>
+                <td>@subject.SubjectCourse</td>
+                <td>@subject.SubjectCurrYear</td>
+                <td>
+                    @*<a class="btn btn-primary" asp-controller="Student" asp-action="Edit" asp-route-id="@student.Id">Edit</a>*@
+                    <a>Edit Subject</a>
+                </td>
+                <td>
+                    <a>Edit Schedule</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

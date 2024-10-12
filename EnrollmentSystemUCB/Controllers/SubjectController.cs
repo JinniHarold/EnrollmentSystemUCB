@@ -44,5 +44,11 @@ namespace EnrollmentSystemUCB.Controllers
 
             return View();
         }
+        [HttpGet]
+        public async Task<IActionResult> ListSubject()
+        {
+            var subjects = await dbContext.Subjects.ToListAsync();
+            return View(subjects);
+        }
     }
 }
