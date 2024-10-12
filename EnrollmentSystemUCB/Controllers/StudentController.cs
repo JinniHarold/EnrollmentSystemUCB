@@ -31,7 +31,7 @@ namespace EnrollmentSystemUCB.Controllers
             var student = new Student
             {
                 StudFName = viewModel.StudFName,
-                StudMInitial = viewModel.StudMInitial,
+                StudMInitial = viewModel.StudMInitial ?? ".",
                 StudLName = viewModel.StudLName,
                 StudCourse = viewModel.StudCourse,
                 StudYear = viewModel.StudYear
