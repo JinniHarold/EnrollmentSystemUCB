@@ -10,6 +10,11 @@ namespace EnrollmentSystemUCB.Controllers
     {
         private readonly ApplicationDbContext dbContext;
 
+        public SubjectController(ApplicationDbContext dbContext)
+        {
+            this.dbContext = dbContext;
+        }
+
 
     }
 }

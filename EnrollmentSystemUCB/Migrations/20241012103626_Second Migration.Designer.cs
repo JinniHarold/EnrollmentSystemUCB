@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EnrollmentSystemUCB.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241012101521_Second Migration")]
+    [Migration("20241012103626_Second Migration")]
     partial class SecondMigration
     {
         /// <inheritdoc />
