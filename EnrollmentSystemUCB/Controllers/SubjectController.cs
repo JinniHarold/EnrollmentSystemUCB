@@ -20,5 +20,31 @@ namespace EnrollmentSystemUCB.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public async Task<IActionResult> AddSubject(AddSubjectViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(viewModel);
+            }
+
+            var subject = new Subject
+            {
+                SubjectCode = viewModel.SubjectCode,
+                SubjectDescription = viewModel.SubjectDescription,
+                SubjectUnits = viewModel.SubjectUnits,
+                SubjectOffering = viewModel.SubjectOffering,
+                SubjectCategory = viewModel.SubjectCategory,
+                SubjectCourse = viewModel.SubjectCourse,
+                SubjectCurrYear = viewModel.SubjectCurrYear,
+
+            };
+
+            await dbContext.Subject.AddAsync(subject);
+            await dbContext.SaveChangesAsync();
+
+
+            return View();
+        }
     }
 }
