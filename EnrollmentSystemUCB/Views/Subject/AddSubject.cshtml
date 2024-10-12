@@ -47,8 +47,8 @@
                 <label class="input-group-text" for="inputGroupSelect01">Course</label>
                 <select class="form-select" asp-for="SubjectCategory" id="inputGroupSelect01">
                     <option selected value="">Choose...</option>
-                    <option value="BSIT">BSIT</option>
-                    <option value="BSIS">BSIS</option>
+                    <option value="LEC">LECTURE</option>
+                    <option value="LAB">LABORATORY</option>
                 </select>
                 <span asp-validation-for="SubjectCategory" class="text-danger"></span>
             </div>
@@ -63,6 +63,14 @@
                 </select>
                 <span asp-validation-for="SubjectCourse" class="text-danger"></span>
             </div>
+            @*Subject Curr Year*@
+            <div class="form-floating mb-sm-3">
+                <input type="text" class="form-control" asp-for="SubjectCurrYear">
+                <label for="floatingPassword">Units:</label>
+                <span asp-validation-for="SubjectCurrYear" class="text-danger"></span>
+            </div>
+
+            <input class="btn btn-primary" type="submit" value="Save">
         </div>
     </div>
 </form>
