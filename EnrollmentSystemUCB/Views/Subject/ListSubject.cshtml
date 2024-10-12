@@ -6,17 +6,29 @@
 
 @model List<EnrollmentSystemUCB.Models.Entities.Subject>
 
+<style>
+    th {
+        text-align: center; /* Center text horizontally */
+        vertical-align: middle; /* Center text vertically */
+    }
+    td {
+        text-align: center; /* Center text horizontally */
+        vertical-align: middle; /* Center text vertically */
+    }
+</style>
+
 <h1>LIST OF SUBJECTS BRO</h1>
-<table class="table caption-top" style="width: 100%;>
+<table class="table caption-top">
     <thead>
         <tr>
-            <th>Subject Code</th>
-            <th>Description</th>
-            <th>Units</th>
-            <th>Category</th>
-            <th>Offering</th>
-            <th>Course</th>
-            <th>Curriculum Year</th>
+            <th class="col-2">Subject Code</th>
+            <th class="col-2">Description</th>
+            <th class="col-2">Units</th>
+            <th class="col-2">Category</th>
+            <th class="col-2">Offering</th>
+            <th class="col-2">Course</th>
+            <th class="col-2">Curriculum Year</th>
+            <th class="col-4" colspan="2">EDIT</th>
         </tr>
     </thead>
     <tbody>
@@ -32,10 +44,10 @@
                 <td>@subject.SubjectCurrYear</td>
                 <td>
                     @*<a class="btn btn-primary" asp-controller="Student" asp-action="Edit" asp-route-id="@student.Id">Edit</a>*@
-                    <a>Edit Subject</a>
+                    <a class="btn btn-primary">Information</a>
                 </td>
                 <td>
-                    <a>Edit Schedule</a>
+                    <a class="btn btn-primary">Schedule</a>
                 </td>
             </tr>
         }
