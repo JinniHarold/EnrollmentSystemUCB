@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EnrollmentSystemUCB.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241012103626_Second Migration")]
+    [Migration("20241012135812_Second Migration")]
     partial class SecondMigration
     {
         /// <inheritdoc />
@@ -63,8 +63,9 @@ namespace EnrollmentSystemUCB.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SubjectCourse")
-                        .HasColumnType("int");
+                    b.Property<string>("SubjectCourse")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SubjectCurrYear")
                         .IsRequired()
