@@ -10,7 +10,7 @@
     <div class="text-center">
         <h1 class="display-4">Welcome University of Cebu</h1>
         <h1 class="display-4">Subject Entry</h1>
-        <h3 class="display-4">Subject Information</h3>
+        <h3 >Subject Information</h3>
 
         <div class="d-grid gap-2 d-md-block">
             @*Subject Code*@
@@ -18,8 +18,51 @@
                 <input type="text" class="form-control" asp-for="SubjectCode">
                 <label for="floatingPassword">Subject Code:</label>
                 <span asp-validation-for="SubjectCode" class="text-danger"></span>
+            </div
+             @*Subject Description*@
+            <div class="form-floating mb-sm-3">
+                <input type="text" class="form-control" asp-for="SubjectDescription">
+                <label for="floatingPassword">Descriptipn:</label>
+                <span asp-validation-for="SubjectDescription" class="text-danger"></span>
             </div>
-           
+            @*Subject Units*@
+            <div class="form-floating mb-sm-3">
+                <input type="text" class="form-control" asp-for="SubjectUnits">
+                <label for="floatingPassword">Units:</label>
+                <span asp-validation-for="SubjectUnits" class="text-danger"></span>
+            </div>
+            @* Subject Offering Drop Down *@
+            <div class="input-group mb-sm-3">
+                <label class="input-group-text" for="inputGroupSelect01">Course</label>
+                <select class="form-select" asp-for="SubjectOffering" id="inputGroupSelect01">
+                    <option selected value="">Choose...</option>
+                    <option value="1st Sem">1st Semester</option>
+                    <option value="2nd Sem">2nd Semester</option>
+                    <option value="Summer">Summer</option>
+                </select>
+                <span asp-validation-for="SubjectOffering" class="text-danger"></span>
+            </div>
+            @* Category Drop Down *@
+            <div class="input-group mb-sm-3">
+                <label class="input-group-text" for="inputGroupSelect01">Course</label>
+                <select class="form-select" asp-for="SubjectCategory" id="inputGroupSelect01">
+                    <option selected value="">Choose...</option>
+                    <option value="BSIT">BSIT</option>
+                    <option value="BSIS">BSIS</option>
+                </select>
+                <span asp-validation-for="SubjectCategory" class="text-danger"></span>
+            </div>
+            @* Course Drop Down *@
+            <div class="input-group mb-sm-3">
+                <label class="input-group-text" for="inputGroupSelect01">Course</label>
+                <select class="form-select" asp-for="SubjectCourse" id="inputGroupSelect01">
+                    <option selected value="">Choose...</option>
+                    <option value="BSIT">BSIT</option>
+                    <option value="BSIS">BSIS</option>
+                    <option value="ACT">ACT</option>
+                </select>
+                <span asp-validation-for="SubjectCourse" class="text-danger"></span>
+            </div>
         </div>
     </div>
 </form>

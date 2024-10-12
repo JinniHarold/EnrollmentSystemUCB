@@ -16,7 +16,7 @@ namespace EnrollmentSystemUCB.Controllers
         }
 
         [HttpGet]
-        public IActionResult Add()
+        public IActionResult AddSubject()
         {
             return View();
         }
