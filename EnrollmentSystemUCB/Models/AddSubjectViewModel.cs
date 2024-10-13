@@ -12,6 +12,7 @@ namespace EnrollmentSystemUCB.Models
         public string SubjectDescription { get; set; }
 
         [Required(ErrorMessage = "Subject Units are required.")]
+        [Range(2, 3, ErrorMessage = "Year must be between 2 and 3.")]
         public int SubjectUnits { get; set; }
 
         [Required(ErrorMessage = "Subject Category is required.")]
@@ -25,5 +26,7 @@ namespace EnrollmentSystemUCB.Models
 
         [Required(ErrorMessage = "Curriculum Year is required.")]
         public string SubjectCurrYear { get; set; }
+        public string SubjectPre { get; set; }
+        public string SubjectCo { get; set; }
     }
 }
