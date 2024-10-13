@@ -26,7 +26,7 @@ namespace EnrollmentSystemUCB.Models
 
         [Required(ErrorMessage = "Curriculum Year is required.")]
         public string SubjectCurrYear { get; set; }
-        public string SubjectPre { get; set; }
-        public string SubjectCo { get; set; }
+        public string ? SubjectPre { get; set; }
+        public string ? SubjectCo { get; set; }
     }
 }
