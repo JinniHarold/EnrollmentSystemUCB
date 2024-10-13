@@ -89,17 +89,69 @@
             <!-- Requisite Form Section -->
             <div class="col-md-6">
                 @*REQUISITE FORM*@
-                <h3>Requisite Information</h3> <!-- Optional heading -->
+                <h3>Requisite Information</h3>
                 <div class="d-grid gap-2 d-md-block">
                     <div class="input-group mb-sm-3">
-                        <input type="text" class="form-control" placeholder="Requisite Subject:" aria-label="">
+                        <input type="text" id="requisiteSubject" class="form-control" placeholder="Requisite Subject:" aria-label="">
                         <button class="btn btn-outline-secondary" type="button">Pre-Requisite</button>
                         <button class="btn btn-outline-secondary" type="button">Co-Requisite</button>
                     </div>
+
+                    <!-- Table to display subject details -->
+                    <table id="subjectDetailsTable" class="table caption-top" style="display:none;" border="1">
+                        <thead>
+                            <tr>
+                                <th>Subject Code</th>
+                                <th>Description</th>
+                                <th>Units</th>
+                            </tr>
+                        </thead>
+                        <tbody id="subjectDetailsBody">
+                            <!-- Data will be populated here -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
-        </div>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
+                $(document).ready(function () {
+                    $('#requisiteSubject').on('input', function () {
+                        var subjectCode = $(this).val();
+
+                        if (subjectCode.length > 0) {
+                            $.ajax({
+                                url: '@Url.Action("GetSubjectDetails", "Subject")',
+                                type: 'GET',
+                                data: { subjectCode: subjectCode },
+                                success: function (data) {
+                                    // Clear previous data
+                                    $('#subjectDetailsBody').empty();
+
+                                    if (data) {
+                                        // Populate table with returned data
+                                        $('#subjectDetailsBody').append(
+                                            `<tr>
+                                                <td>${data.subjectCode}</td>
+                                                <td>${data.subjectDescription}</td>
+                                                <td>${data.subjectUnits}</td>
+                                            </tr>`
+                                        );
+                                        $('#subjectDetailsTable').show(); // Show table
+                                    } else {
+                                        $('#subjectDetailsTable').hide(); // Hide table if no data found
+                                    }
+                                },
+                                error: function () {
+                                    $('#subjectDetailsTable').hide(); // Hide table on error
+                                }
+                            });
+                        } else {
+                            $('#subjectDetailsTable').hide(); // Hide table if input is empty
+                        }
+                    });
+                });
+            </script>
 
         <!-- Submit Button -->
         <input class="btn btn-primary mt-3" type="submit" value="Save">
