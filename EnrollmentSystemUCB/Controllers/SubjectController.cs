@@ -79,5 +79,18 @@ namespace EnrollmentSystemUCB.Controllers
             }
             return RedirectToAction("ListSubject", "Subject");
         }
+        [HttpPost]
+        public async Task<IActionResult> DeleteSubject(Subject viewModel)
+        {
+            var subject = await dbContext.Subjects.AsNoTracking().FirstOrDefaultAsync(x => x.SubjectCode == viewModel.SubjectCode);
+
+            if (subject is not null)
+            {
+                dbContext.Subjects.Remove(viewModel);
+                await dbContext.SaveChangesAsync();
+            }
+
+            return RedirectToAction("ListSubject", "Subject");
+        }
     }
 }

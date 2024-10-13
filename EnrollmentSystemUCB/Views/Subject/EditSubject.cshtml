@@ -30,9 +30,8 @@
                 <div class="d-grid gap-2 d-md-block">
                     @*Subject Code*@
                     <div class="form-floating mb-sm-3">
-                        <input type="text" class="form-control" asp-for="SubjectCode">
-                        <label for="floatingPassword">Subject Code:</label>
-                        <span asp-validation-for="SubjectCode" class="text-danger"></span>
+                        <label class="form-label"></label>
+                        <input type="text" class="form-control" asp-for="SubjectCode" readonly>
                     </div>
                     @*Subject Description*@
                     <div class="form-floating mb-sm-3">
@@ -104,6 +103,6 @@
 
         <!-- Submit Button -->
         <input class="btn btn-primary mt-3" type="submit" value="Save">
-        <input class="btn btn-danger ms-3" type="submit" asp-action="Delete" asp-controller="Student" value="Delete">
+        <input class="btn btn-danger ms-3" type="submit" asp-action="DeleteSubject" asp-controller="Subject" value="Delete">
     </div>
 </form>
