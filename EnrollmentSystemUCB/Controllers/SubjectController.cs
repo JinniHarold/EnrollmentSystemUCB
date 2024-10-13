@@ -23,6 +23,7 @@ namespace EnrollmentSystemUCB.Controllers
         [HttpPost]
         public async Task<IActionResult> AddSubject(AddSubjectViewModel viewModel)
         {
+          
             if (!ModelState.IsValid)
             {
                 return View(viewModel);
