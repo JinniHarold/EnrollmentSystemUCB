@@ -74,7 +74,7 @@ namespace EnrollmentSystemUCB.Controllers
                 subject.SubjectCurrYear = viewModel.SubjectCurrYear;
                 subject.SubjectPre = viewModel.SubjectPre ?? " ";
                 subject.SubjectCo = viewModel.SubjectCo ?? " ";
-
+                    
                 await dbContext.SaveChangesAsync();
             }
             return RedirectToAction("ListSubject", "Subject");
