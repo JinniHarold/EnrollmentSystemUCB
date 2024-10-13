@@ -6,6 +6,7 @@ namespace EnrollmentSystemUCB.Models
     {
         [Key]
         [Required(ErrorMessage = "Subject Code is required.")]
+        [SubjectCodeExists(ErrorMessage = "This subject code already exists.")]
         public string SubjectCode { get; set; }
 
         [Required(ErrorMessage = "Subject Description is required.")]
