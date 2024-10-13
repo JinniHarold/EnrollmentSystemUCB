@@ -97,7 +97,8 @@
                         <button class="btn btn-outline-secondary" type="button">Pre-Requisite</button>
                         <button class="btn btn-outline-secondary" type="button">Co-Requisite</button>
                     </div>
-
+                    <input type="hidden" asp-for="SubjectPre" id="PreRequisiteSubjectCode" />
+                    <input type="hidden" asp-for="SubjectCo" id="CoRequisiteSubjectCode" />
                     <!-- Table to display subject details -->
                     <table id="subjectDetailsTable" class="table caption-top" style="display:none;" border="1">
                         <thead>
