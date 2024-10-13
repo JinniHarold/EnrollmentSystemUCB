@@ -92,5 +92,25 @@ namespace EnrollmentSystemUCB.Controllers
 
             return RedirectToAction("ListSubject", "Subject");
         }
+        [HttpGet]
+        public async Task<IActionResult> GetSubjectDetails(string subjectCode)
+        {
+            var subject = await dbContext.Subjects
+                .Where(s => s.SubjectCode == subjectCode)
+                .Select(s => new
+                {
+                    s.SubjectCode,
+                    s.SubjectDescription,
+                    s.SubjectUnits
+                })
+                .FirstOrDefaultAsync();
+
+            if (subject == null)
+            {
+                return NotFound(); // Return 404 if no subject found
+            }
+
+            return Json(subject); // Return JSON data
+        }
     }
 }
