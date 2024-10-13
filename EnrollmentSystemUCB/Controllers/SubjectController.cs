@@ -37,8 +37,8 @@ namespace EnrollmentSystemUCB.Controllers
                 SubjectCategory = viewModel.SubjectCategory,
                 SubjectCourse = viewModel.SubjectCourse,
                 SubjectCurrYear = viewModel.SubjectCurrYear,
-                SubjectPre = viewModel.SubjectPre ?? ".",
-                SubjectCo = viewModel.SubjectCo ?? ".",
+                SubjectPre = viewModel.SubjectPre ?? " ",
+                SubjectCo = viewModel.SubjectCo ?? " ",
             };
 
             await dbContext.Subjects.AddAsync(subject);
@@ -51,6 +51,33 @@ namespace EnrollmentSystemUCB.Controllers
         {
             var subjects = await dbContext.Subjects.ToListAsync();
             return View(subjects);
+        }
+        [HttpGet]
+        public async Task<IActionResult> EditSubject(string SubjectCode)
+        {
+            var subject = await dbContext.Subjects.FindAsync(SubjectCode);
+
+            return View(subject);
+        }
+        [HttpPost]
+        public async Task<IActionResult> EditSubject(Subject viewModel)
+        {
+            var subject = await dbContext.Subjects.FindAsync(viewModel.SubjectCode);
+
+            if (subject is not null)
+            {
+                subject.SubjectDescription = viewModel.SubjectDescription;
+                subject.SubjectUnits = viewModel.SubjectUnits;
+                subject.SubjectOffering = viewModel.SubjectOffering;
+                subject.SubjectCategory = viewModel.SubjectCategory;
+                subject.SubjectCourse = viewModel.SubjectCourse;
+                subject.SubjectCurrYear = viewModel.SubjectCurrYear;
+                subject.SubjectPre = viewModel.SubjectPre ?? " ";
+                subject.SubjectCo = viewModel.SubjectCo ?? " ";
+
+                await dbContext.SaveChangesAsync();
+            }
+            return RedirectToAction("ListSubject", "Subject");
         }
     }
 }

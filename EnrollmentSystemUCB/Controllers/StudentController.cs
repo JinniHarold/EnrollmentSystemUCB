@@ -64,7 +64,7 @@ namespace EnrollmentSystemUCB.Controllers
             if (student is not null)
             {
                 student.StudFName = viewModel.StudFName;
-                student.StudMInitial = viewModel.StudMInitial;
+                student.StudMInitial = viewModel.StudMInitial ?? " ";
                 student.StudLName = viewModel.StudLName;
                 student.StudCourse = viewModel.StudCourse;
                 student.StudYear = viewModel.StudYear;
