@@ -28,6 +28,8 @@
             <th class="col-2">Offering</th>
             <th class="col-2">Course</th>
             <th class="col-2">Curriculum Year</th>
+            <th class="col-2">Pre-Requisite</th>
+            <th class="col-2">Co-Requisite</th>
             <th class="col-4" colspan="2">EDIT</th>
         </tr>
     </thead>
@@ -42,6 +44,8 @@
                 <td>@subject.SubjectOffering</td>
                 <td>@subject.SubjectCourse</td>
                 <td>@subject.SubjectCurrYear</td>
+                <td>@subject.SubjectPre</td>
+                <td>@subject.SubjectCo</td>
                 <td>
                     @*<a class="btn btn-primary" asp-controller="Student" asp-action="Edit" asp-route-id="@student.Id">Edit</a>*@
                     <a class="btn btn-primary">Information</a>
