@@ -104,6 +104,13 @@
                         <tbody id="subjectDetailsBody">
                         </tbody>
                     </table>
+                    <!-- Add these buttons below the existing buttons for Pre-Requisite and Co-Requisite -->
+                    <div id="notification" class="alert alert-success" style="display:none;" role="alert">
+                        Successfully removed the subject.
+                    </div>
+                    <button class="btn btn-outline-danger" type="button" id="removePreRequisite">Remove Pre-Requisite Subject</button>
+                    <button class="btn btn-outline-danger" type="button" id="removeCoRequisite">Remove Co-Requisite Subject</button>
+
                 </div>
             </div>
 
@@ -119,17 +126,16 @@
                                 type: 'GET',
                                 data: { subjectCode: subjectCode },
                                 success: function (data) {
-                                    // Clear previous data
-                                    $('#subjectDetailsBody').empty();
+                                    $('#subjectDetailsBody').empty(); // Clear previous data
 
                                     if (data) {
                                         // Populate table with returned data
                                         $('#subjectDetailsBody').append(
                                             `<tr>
-                                                                    <td>${data.subjectCode}</td>
-                                                                    <td>${data.subjectDescription}</td>
-                                                                    <td>${data.subjectUnits}</td>
-                                                                </tr>`
+                                                    <td>${data.subjectCode}</td>
+                                                    <td>${data.subjectDescription}</td>
+                                                    <td>${data.subjectUnits}</td>
+                                                </tr>`
                                         );
                                         $('#subjectDetailsTable').show(); // Show table
                                     } else {
@@ -146,26 +152,59 @@
                     });
 
                     // Button click for Pre-Requisite
-                    $('button:contains("Pre-Requisite")').on('click', function () {
+                    $('#setPreRequisite').on('click', function () {
                         var selectedSubject = $('#subjectDetailsBody tr').first().clone(); // Clone the first row from the table
                         if (selectedSubject.length) {
-                            // Append the subject details to the Pre-Requisite field
-                            $('#PreRequisiteSubjectCode').val($('#requisiteSubject').val()); // Set the hidden input value for Pre-Requisite
+                            // Set the hidden input value for Pre-Requisite
+                            $('#PreRequisiteSubjectCode').val($('#requisiteSubject').val());
                         }
                     });
 
                     // Button click for Co-Requisite
-                    $('button:contains("Co-Requisite")').on('click', function () {
+                    $('#setCoRequisite').on('click', function () {
                         var selectedSubject = $('#subjectDetailsBody tr').first().clone(); // Clone the first row from the table
                         if (selectedSubject.length) {
-                            // Append the subject details to the Co-Requisite field
-                            $('#CoRequisiteSubjectCode').val($('#requisiteSubject').val()); // Set the hidden input value for Co-Requisite
+                            // Set the hidden input value for Co-Requisite
+                            $('#CoRequisiteSubjectCode').val($('#requisiteSubject').val());
                         }
+                    });
+
+                    // Button click for Remove Pre-Requisite
+                    $('#removePreRequisite').on('click', function () {
+                        $('#PreRequisiteSubjectCode').val(''); // Clear the hidden input value for Pre-Requisite
+                        $('#notification').text('Successfully removed the pre-requisite subject.').show().delay(3000).fadeOut(); // Show success message
+                    });
+
+                    // Button click for Remove Co-Requisite
+                    $('#removeCoRequisite').on('click', function () {
+                        $('#CoRequisiteSubjectCode').val(''); // Clear the hidden input value for Co-Requisite
+                        $('#notification').text('Successfully removed the co-requisite subject.').show().delay(3000).fadeOut(); // Show success message
+                    });
+
+                    // Form submission handling
+                    $('form').on('submit', function (e) {
+                        var subjectCode = $('input[asp-for="SubjectCode"]').val();
+                        var preRequisiteCode = $('#PreRequisiteSubjectCode').val();
+                        var coRequisiteCode = $('#CoRequisiteSubjectCode').val();
+
+                        // If the subject code matches the pre-requisite, set pre-requisite to " "
+                        if (subjectCode === preRequisiteCode) {
+                            $('#PreRequisiteSubjectCode').val(" "); // Set to empty string for database
+                        }
+
+                        // If the subject code matches the co-requisite, set co-requisite to " "
+                        if (subjectCode === coRequisiteCode) {
+                            $('#CoRequisiteSubjectCode').val(" "); // Set to empty string for database
+                        }
+
+                        // Allow the form to be submitted normally
                     });
                 });
             </script>
+
         </div>
             <!-- Submit Button -->
+            <div id="validationMessage" class="alert alert-danger" style="display:none;" role="alert"></div>
             <button class="btn btn-primary mt-3" type="submit">Save</button>
             <input class="btn btn-danger mt-3" type="submit" asp-action="DeleteSubject" asp-controller="Subject" value="Delete">
     </div>
