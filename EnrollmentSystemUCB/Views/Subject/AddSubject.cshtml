@@ -1,10 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-
-@model EnrollmentSystemUCB.Models.AddSubjectViewModel
+﻿@model EnrollmentSystemUCB.Models.AddSubjectViewModel
 
 <style>
     .rounded-square {
@@ -26,27 +20,22 @@
             <!-- Subject Information Section -->
             <div class="col-md-6">
                 <h3>Subject Information</h3>
-                @*SUBJECT INFORMATION*@
                 <div class="d-grid gap-2 d-md-block">
-                    @*Subject Code*@
                     <div class="form-floating mb-sm-3">
                         <input type="text" class="form-control" asp-for="SubjectCode">
                         <label for="floatingPassword">Subject Code:</label>
                         <span asp-validation-for="SubjectCode" class="text-danger"></span>
                     </div>
-                    @*Subject Description*@
                     <div class="form-floating mb-sm-3">
                         <input type="text" class="form-control" asp-for="SubjectDescription">
                         <label for="floatingPassword">Description:</label>
                         <span asp-validation-for="SubjectDescription" class="text-danger"></span>
                     </div>
-                    @*Subject Units*@
                     <div class="form-floating mb-sm-3">
                         <input type="text" class="form-control" asp-for="SubjectUnits">
                         <label for="floatingPassword">Units:</label>
                         <span asp-validation-for="SubjectUnits" class="text-danger"></span>
                     </div>
-                    @* Subject Offering Drop Down *@
                     <div class="input-group mb-sm-3">
                         <label class="input-group-text" for="inputGroupSelect01">Offering</label>
                         <select class="form-select" asp-for="SubjectOffering" id="inputGroupSelect01">
@@ -57,7 +46,6 @@
                         </select>
                         <span asp-validation-for="SubjectOffering" class="text-danger"></span>
                     </div>
-                    @* Category Drop Down *@
                     <div class="input-group mb-sm-3">
                         <label class="input-group-text" for="inputGroupSelect01">Category</label>
                         <select class="form-select" asp-for="SubjectCategory" id="inputGroupSelect01">
@@ -67,7 +55,6 @@
                         </select>
                         <span asp-validation-for="SubjectCategory" class="text-danger"></span>
                     </div>
-                    @* Course Drop Down *@
                     <div class="input-group mb-sm-3">
                         <label class="input-group-text" for="inputGroupSelect01">Course</label>
                         <select class="form-select" asp-for="SubjectCourse" id="inputGroupSelect01">
@@ -78,7 +65,6 @@
                         </select>
                         <span asp-validation-for="SubjectCourse" class="text-danger"></span>
                     </div>
-                    @*Subject Curr Year*@
                     <div class="form-floating mb-sm-3">
                         <input type="text" class="form-control" asp-for="SubjectCurrYear">
                         <label for="floatingPassword">Curriculum Year:</label>
@@ -89,18 +75,16 @@
 
             <!-- Requisite Form Section -->
             <div class="col-md-6">
-                @*REQUISITE FORM*@
                 <h3>Requisite Information</h3>
                 <div class="d-grid gap-2 d-md-block">
                     <div class="input-group mb-sm-3">
                         <input type="text" id="requisiteSubject" class="form-control" placeholder="Requisite Subject:" aria-label="">
-                        <button class="btn btn-outline-secondary" type="button">Pre-Requisite</button>
-                        <button class="btn btn-outline-secondary" type="button">Co-Requisite</button>
+                        <button class="btn btn-outline-secondary" type="button" id="setPreRequisite">Pre-Requisite</button>
+                        <button class="btn btn-outline-secondary" type="button" id="setCoRequisite">Co-Requisite</button>
 
                         <input type="hidden" asp-for="SubjectPre" id="PreRequisiteSubjectCode">
                         <input type="hidden" asp-for="SubjectCo" id="CoRequisiteSubjectCode">
                     </div>
-                    <!-- Table to display subject details -->
                     <table id="subjectDetailsTable" class="table caption-top" style="display:none;" border="1">
                         <thead>
                             <tr>
@@ -110,7 +94,6 @@
                             </tr>
                         </thead>
                         <tbody id="subjectDetailsBody">
-                            <!-- Data will be populated here -->
                         </tbody>
                     </table>
                 </div>
@@ -128,19 +111,22 @@
                                 type: 'GET',
                                 data: { subjectCode: subjectCode },
                                 success: function (data) {
-                                    // Clear previous data
                                     $('#subjectDetailsBody').empty();
 
                                     if (data) {
                                         // Populate table with returned data
                                         $('#subjectDetailsBody').append(
-                                            <tr>
-                                                <td>${data.subjectCode}</td>
-                                                <td>${data.subjectDescription}</td>
-                                                <td>${data.subjectUnits}</td>
-                                            </tr>
+                                            `<tr>
+                                                                <td>${data.subjectCode}</td>
+                                                                <td>${data.subjectDescription}</td>
+                                                                <td>${data.subjectUnits}</td>
+                                            </tr>`
                                         );
                                         $('#subjectDetailsTable').show(); // Show table
+
+                                        // Set hidden inputs for Pre and Co requisites
+                                        $('#PreRequisiteSubjectCode').val(data.subjectCode); // Assuming you want to save the code
+                                        // Add further logic here if needed
                                     } else {
                                         $('#subjectDetailsTable').hide(); // Hide table if no data found
                                     }
@@ -153,9 +139,21 @@
                             $('#subjectDetailsTable').hide(); // Hide table if input is empty
                         }
                     });
+
+                    $('#setPreRequisite').click(function () {
+                        var subjectCode = $('#requisiteSubject').val();
+                        $('#PreRequisiteSubjectCode').val(subjectCode); // Set hidden input for Pre-requisite
+                    });
+
+                    $('#setCoRequisite').click(function () {
+                        var subjectCode = $('#requisiteSubject').val();
+                        $('#CoRequisiteSubjectCode').val(subjectCode); // Set hidden input for Co-requisite
+                    });
                 });
             </script>
-            <!-- Submit Button -->
-            <button class="btn btn-primary mt-3" type="submit">Save</button>
         </div>
+
+        <!-- Submit Button -->
+        <button class="btn btn-primary mt-3" type="submit">Save</button>
+    </div>
 </form>
