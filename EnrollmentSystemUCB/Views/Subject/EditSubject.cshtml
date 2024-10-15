@@ -39,13 +39,11 @@
                         <label for="floatingPassword">Description:</label>
                         <span asp-validation-for="SubjectDescription" class="text-danger"></span>
                     </div>
-                    @*Subject Units*@
                     <div class="form-floating mb-sm-3">
                         <input type="text" class="form-control" asp-for="SubjectUnits">
                         <label for="floatingPassword">Units:</label>
                         <span asp-validation-for="SubjectUnits" class="text-danger"></span>
                     </div>
-                    @* Subject Offering Drop Down *@
                     <div class="input-group mb-sm-3">
                         <label class="input-group-text" for="inputGroupSelect01">Offering</label>
                         <select class="form-select" asp-for="SubjectOffering" id="inputGroupSelect01">
@@ -56,7 +54,6 @@
                         </select>
                         <span asp-validation-for="SubjectOffering" class="text-danger"></span>
                     </div>
-                    @* Category Drop Down *@
                     <div class="input-group mb-sm-3">
                         <label class="input-group-text" for="inputGroupSelect01">Category</label>
                         <select class="form-select" asp-for="SubjectCategory" id="inputGroupSelect01">
@@ -66,7 +63,6 @@
                         </select>
                         <span asp-validation-for="SubjectCategory" class="text-danger"></span>
                     </div>
-                    @* Course Drop Down *@
                     <div class="input-group mb-sm-3">
                         <label class="input-group-text" for="inputGroupSelect01">Course</label>
                         <select class="form-select" asp-for="SubjectCourse" id="inputGroupSelect01">
@@ -77,7 +73,6 @@
                         </select>
                         <span asp-validation-for="SubjectCourse" class="text-danger"></span>
                     </div>
-                    @*Subject Curr Year*@
                     <div class="form-floating mb-sm-3">
                         <input type="text" class="form-control" asp-for="SubjectCurrYear">
                         <label for="floatingPassword">Curriculum Year:</label>
@@ -88,18 +83,16 @@
 
             <!-- Requisite Form Section -->
             <div class="col-md-6">
-                @*REQUISITE FORM*@
                 <h3>Requisite Information</h3>
                 <div class="d-grid gap-2 d-md-block">
                     <div class="input-group mb-sm-3">
                         <input type="text" id="requisiteSubject" class="form-control" placeholder="Requisite Subject:" aria-label="">
-                        <button class="btn btn-outline-secondary" type="button">Pre-Requisite</button>
-                        <button class="btn btn-outline-secondary" type="button">Co-Requisite</button>
+                        <button class="btn btn-outline-secondary" type="button" id="setPreRequisite">Pre-Requisite</button>
+                        <button class="btn btn-outline-secondary" type="button" id="setCoRequisite">Co-Requisite</button>
 
                         <input type="hidden" asp-for="SubjectPre" id="PreRequisiteSubjectCode">
                         <input type="hidden" asp-for="SubjectCo" id="CoRequisiteSubjectCode">
                     </div>
-                    <!-- Table to display subject details -->
                     <table id="subjectDetailsTable" class="table caption-top" style="display:none;" border="1">
                         <thead>
                             <tr>
@@ -109,7 +102,6 @@
                             </tr>
                         </thead>
                         <tbody id="subjectDetailsBody">
-                            <!-- Data will be populated here -->
                         </tbody>
                     </table>
                 </div>
@@ -133,11 +125,11 @@
                                     if (data) {
                                         // Populate table with returned data
                                         $('#subjectDetailsBody').append(
-                                            <tr>
-                                                <td>${data.subjectCode}</td>
-                                                <td>${data.subjectDescription}</td>
-                                                <td>${data.subjectUnits}</td>
-                                            </tr>
+                                            `<tr>
+                                                                    <td>${data.subjectCode}</td>
+                                                                    <td>${data.subjectDescription}</td>
+                                                                    <td>${data.subjectUnits}</td>
+                                                                </tr>`
                                         );
                                         $('#subjectDetailsTable').show(); // Show table
                                     } else {
@@ -152,8 +144,27 @@
                             $('#subjectDetailsTable').hide(); // Hide table if input is empty
                         }
                     });
+
+                    // Button click for Pre-Requisite
+                    $('button:contains("Pre-Requisite")').on('click', function () {
+                        var selectedSubject = $('#subjectDetailsBody tr').first().clone(); // Clone the first row from the table
+                        if (selectedSubject.length) {
+                            // Append the subject details to the Pre-Requisite field
+                            $('#PreRequisiteSubjectCode').val($('#requisiteSubject').val()); // Set the hidden input value for Pre-Requisite
+                        }
+                    });
+
+                    // Button click for Co-Requisite
+                    $('button:contains("Co-Requisite")').on('click', function () {
+                        var selectedSubject = $('#subjectDetailsBody tr').first().clone(); // Clone the first row from the table
+                        if (selectedSubject.length) {
+                            // Append the subject details to the Co-Requisite field
+                            $('#CoRequisiteSubjectCode').val($('#requisiteSubject').val()); // Set the hidden input value for Co-Requisite
+                        }
+                    });
                 });
             </script>
+        </div>
             <!-- Submit Button -->
             <button class="btn btn-primary mt-3" type="submit">Save</button>
             <input class="btn btn-danger mt-3" type="submit" asp-action="DeleteSubject" asp-controller="Subject" value="Delete">
