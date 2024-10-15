@@ -131,34 +131,28 @@
                                     if (data) {
                                         // Populate table with returned data
                                         $('#subjectDetailsBody').append(
-                                            `<tr>
-                                                    <td>${data.subjectCode}</td>
-                                                    <td>${data.subjectDescription}</td>
-                                                    <td>${data.subjectUnits}</td>
-                                                </tr>`
+                                            <tr>
+                                                <td>${data.subjectCode}</td>
+                                                <td>${data.subjectDescription}</td>
+                                                <td>${data.subjectUnits}</td>
+                                            </tr>
                                         );
                                         $('#subjectDetailsTable').show(); // Show table
-
-                                        // Set hidden input values for form submission
-                                        $('#PreRequisiteSubjectCode').val(data.subjectCode); // Pre-requisite subject code
-                                        // If co-requisite needed, assign it similarly: $('#CoRequisiteSubjectCode').val(data.subjectCode);
                                     } else {
                                         $('#subjectDetailsTable').hide(); // Hide table if no data found
-                                        $('#PreRequisiteSubjectCode').val(''); // Clear hidden input if no data
                                     }
                                 },
                                 error: function () {
                                     $('#subjectDetailsTable').hide(); // Hide table on error
-                                    $('#PreRequisiteSubjectCode').val(''); // Clear hidden input on error
                                 }
                             });
                         } else {
                             $('#subjectDetailsTable').hide(); // Hide table if input is empty
-                            $('#PreRequisiteSubjectCode').val(''); // Clear hidden input if input is empty
                         }
                     });
                 });
             </script>
+
 
 
         <!-- Submit Button -->

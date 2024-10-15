@@ -119,6 +119,20 @@
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script>
                 $(document).ready(function () {
+                    // Keep track of which button was clicked (Pre-Requisite or Co-Requisite)
+                    let requisiteType = '';
+
+                    // When the "Pre-Requisite" button is clicked
+                    $('button:contains("Pre-Requisite")').on('click', function () {
+                        requisiteType = 'pre';
+                    });
+
+                    // When the "Co-Requisite" button is clicked
+                    $('button:contains("Co-Requisite")').on('click', function () {
+                        requisiteType = 'co';
+                    });
+
+                    // Handle input change on the subject code field
                     $('#requisiteSubject').on('input', function () {
                         var subjectCode = $(this).val();
 
@@ -142,22 +156,36 @@
                                         );
                                         $('#subjectDetailsTable').show(); // Show table
 
-                                        // Set hidden input values for form submission
-                                        $('#PreRequisiteSubjectCode').val(data.subjectCode); // Pre-requisite subject code
-                                        // If co-requisite needed, assign it similarly: $('#CoRequisiteSubjectCode').val(data.subjectCode);
+                                        // Check if Pre-Requisite or Co-Requisite button was clicked
+                                        if (requisiteType === 'pre') {
+                                            // Set the hidden input value for Pre-Requisite
+                                            $('#PreRequisiteSubjectCode').val(data.subjectCode);
+                                        } else if (requisiteType === 'co') {
+                                            // Set the hidden input value for Co-Requisite
+                                            $('#CoRequisiteSubjectCode').val(data.subjectCode);
+                                        }
                                     } else {
                                         $('#subjectDetailsTable').hide(); // Hide table if no data found
-                                        $('#PreRequisiteSubjectCode').val(''); // Clear hidden input if no data
+
+                                        // Clear hidden input values if no data found
+                                        $('#PreRequisiteSubjectCode').val('');
+                                        $('#CoRequisiteSubjectCode').val('');
                                     }
                                 },
                                 error: function () {
                                     $('#subjectDetailsTable').hide(); // Hide table on error
-                                    $('#PreRequisiteSubjectCode').val(''); // Clear hidden input on error
+
+                                    // Clear hidden input values on error
+                                    $('#PreRequisiteSubjectCode').val('');
+                                    $('#CoRequisiteSubjectCode').val('');
                                 }
                             });
                         } else {
                             $('#subjectDetailsTable').hide(); // Hide table if input is empty
-                            $('#PreRequisiteSubjectCode').val(''); // Clear hidden input if input is empty
+
+                            // Clear hidden input values if input is empty
+                            $('#PreRequisiteSubjectCode').val('');
+                            $('#CoRequisiteSubjectCode').val('');
                         }
                     });
                 });
