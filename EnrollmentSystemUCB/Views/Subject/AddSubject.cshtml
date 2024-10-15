@@ -94,35 +94,10 @@
                 <div class="d-grid gap-2 d-md-block">
                     <div class="input-group mb-sm-3">
                         <input type="text" id="requisiteSubject" class="form-control" placeholder="Requisite Subject:" aria-label="">
-
-                        <!-- Radio Buttons for Pre-Requisite and Co-Requisite -->
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="requisiteType" id="preRequisiteRadio" value="pre">
-                            <label class="form-check-label" for="preRequisiteRadio">Pre-Requisite</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="requisiteType" id="coRequisiteRadio" value="co">
-                            <label class="form-check-label" for="coRequisiteRadio">Co-Requisite</label>
-                        </div>
-
-                        <!-- Hidden fields to store requisite subject codes -->
-                        <input type="hidden" asp-for="SubjectPre" id="PreRequisiteSubjectCode">
-                        <input type="hidden" asp-for="SubjectCo" id="CoRequisiteSubjectCode">
+                        <button class="btn btn-outline-secondary" type="button">Pre-Requisite</button>
+                        <button class="btn btn-outline-secondary" type="button">Co-Requisite</button>
                     </div>
 
-                    <!-- Table to display subject details -->
-                    <table id="subjectDetailsTable" class="table caption-top" style="display:none;" border="1">
-                        <thead>
-                            <tr>
-                                <th>Subject Code</th>
-                                <th>Description</th>
-                                <th>Units</th>
-                            </tr>
-                        </thead>
-                        <tbody id="subjectDetailsBody">
-                            <!-- Data will be populated here -->
-                        </tbody>
-                    </table>
                     <!-- Table to display subject details -->
                     <table id="subjectDetailsTable" class="table caption-top" style="display:none;" border="1">
                         <thead>
@@ -142,18 +117,8 @@
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script>
                 $(document).ready(function () {
-                    // Initially, no radio button is selected
-                    let requisiteType = '';
-
-                    // Listen for changes in the radio buttons
-                    $('input[name="requisiteType"]').on('change', function () {
-                        requisiteType = $(this).val(); // Set the requisite type based on the selected radio button
-                        processRequisiteSubject(); // Process the input when the type changes
-                    });
-
-                    // Function to handle requisite subject input and AJAX call
-                    function processRequisiteSubject() {
-                        var subjectCode = $('#requisiteSubject').val(); // Get the subject code from input
+                    $('#requisiteSubject').on('input', function () {
+                        var subjectCode = $(this).val();
 
                         if (subjectCode.length > 0) {
                             $.ajax({
@@ -161,30 +126,21 @@
                                 type: 'GET',
                                 data: { subjectCode: subjectCode },
                                 success: function (data) {
-                                    // Clear previous data in the table
+                                    // Clear previous data
                                     $('#subjectDetailsBody').empty();
 
                                     if (data) {
                                         // Populate table with returned data
                                         $('#subjectDetailsBody').append(
-                                            `<tr>
-                                                    <td>${data.subjectCode}</td>
-                                                    <td>${data.subjectDescription}</td>
-                                                    <td>${data.subjectUnits}</td>
-                                                </tr>`
+                                            <tr>
+                                                <td>${data.subjectCode}</td>
+                                                <td>${data.subjectDescription}</td>
+                                                <td>${data.subjectUnits}</td>
+                                            </tr>
                                         );
-                                        $('#subjectDetailsTable').show(); // Show the table
-
-                                        // If "Pre-Requisite" radio button is selected
-                                        if (requisiteType === 'pre') {
-                                            $('#PreRequisiteSubjectCode').val(data.subjectCode); // Set the Pre-Requisite hidden input
-                                        }
-                                        // If "Co-Requisite" radio button is selected
-                                        else if (requisiteType === 'co') {
-                                            $('#CoRequisiteSubjectCode').val(data.subjectCode); // Set the Co-Requisite hidden input
-                                        }
+                                        $('#subjectDetailsTable').show(); // Show table
                                     } else {
-                                        $('#subjectDetailsTable').hide(); // Hide table if no data is found
+                                        $('#subjectDetailsTable').hide(); // Hide table if no data found
                                     }
                                 },
                                 error: function () {
@@ -194,7 +150,7 @@
                         } else {
                             $('#subjectDetailsTable').hide(); // Hide table if input is empty
                         }
-                    }
+                    });
                 });
             </script>
 
