@@ -89,19 +89,17 @@
 
             <!-- Requisite Form Section -->
             <div class="col-md-6">
+                @*REQUISITE FORM*@
                 <h3>Requisite Information</h3>
                 <div class="d-grid gap-2 d-md-block">
                     <div class="input-group mb-sm-3">
                         <input type="text" id="requisiteSubject" class="form-control" placeholder="Requisite Subject:" aria-label="">
-                        <button class="btn btn-outline-secondary" type="button" id="preRequisiteBtn">Pre-Requisite</button>
-                        <button class="btn btn-outline-secondary" type="button" id="coRequisiteBtn">Co-Requisite</button>
+                        <button class="btn btn-outline-secondary" type="button">Pre-Requisite</button>
+                        <button class="btn btn-outline-secondary" type="button">Co-Requisite</button>
+
+                        <input type="hidden" asp-for="SubjectPre" id="PreRequisiteSubjectCode">
+                        <input type="hidden" asp-for="SubjectCo" id="CoRequisiteSubjectCode">
                     </div>
-
-                    <!-- Hidden inputs for selected requisite -->
-                    <input type="hidden" id="selectedRequisiteType" name="SelectedRequisiteType" value="" />
-                    <input type="hidden" id="PreRequisiteSubjectCode" name="PreRequisiteSubjectCode" />
-                    <input type="hidden" id="CoRequisiteSubjectCode" name="CoRequisiteSubjectCode" />
-
                     <!-- Table to display subject details -->
                     <table id="subjectDetailsTable" class="table caption-top" style="display:none;" border="1">
                         <thead>
@@ -121,25 +119,6 @@
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script>
                 $(document).ready(function () {
-                    let requisiteType = ''; // Keep track of requisite type
-
-                    // When the "Pre-Requisite" button is clicked
-                    $('#preRequisiteBtn').on('click', function () {
-                        requisiteType = 'pre';
-                        $('#selectedRequisiteType').val('pre'); // Set hidden input for form submission
-                        $(this).addClass('active'); // Mark button active
-                        $('#coRequisiteBtn').removeClass('active'); // Deselect other button
-                    });
-
-                    // When the "Co-Requisite" button is clicked
-                    $('#coRequisiteBtn').on('click', function () {
-                        requisiteType = 'co';
-                        $('#selectedRequisiteType').val('co'); // Set hidden input for form submission
-                        $(this).addClass('active'); // Mark button active
-                        $('#preRequisiteBtn').removeClass('active'); // Deselect other button
-                    });
-
-                    // Handle subject input and fetch details
                     $('#requisiteSubject').on('input', function () {
                         var subjectCode = $(this).val();
 
@@ -149,47 +128,34 @@
                                 type: 'GET',
                                 data: { subjectCode: subjectCode },
                                 success: function (data) {
+                                    // Clear previous data
                                     $('#subjectDetailsBody').empty();
 
                                     if (data) {
-                                        $('#subjectDetailsBody').append(`
-                                                            <tr>
-                                                                <td>${data.subjectCode}</td>
-                                                                <td>${data.subjectDescription}</td>
-                                                                <td>${data.subjectUnits}</td>
-                                                            </tr>`);
-                                        $('#subjectDetailsTable').show();
-
-                                        if (requisiteType === 'pre') {
-                                            $('#PreRequisiteSubjectCode').val(data.subjectCode);
-                                            $('#CoRequisiteSubjectCode').val(''); // Clear co-requisite value
-                                        } else if (requisiteType === 'co') {
-                                            $('#CoRequisiteSubjectCode').val(data.subjectCode);
-                                            $('#PreRequisiteSubjectCode').val(''); // Clear pre-requisite value
-                                        }
+                                        // Populate table with returned data
+                                        $('#subjectDetailsBody').append(
+                                            <tr>
+                                                <td>${data.subjectCode}</td>
+                                                <td>${data.subjectDescription}</td>
+                                                <td>${data.subjectUnits}</td>
+                                            </tr>
+                                        );
+                                        $('#subjectDetailsTable').show(); // Show table
                                     } else {
-                                        $('#subjectDetailsTable').hide();
-                                        $('#PreRequisiteSubjectCode').val('');
-                                        $('#CoRequisiteSubjectCode').val('');
+                                        $('#subjectDetailsTable').hide(); // Hide table if no data found
                                     }
                                 },
                                 error: function () {
-                                    $('#subjectDetailsTable').hide();
-                                    $('#PreRequisiteSubjectCode').val('');
-                                    $('#CoRequisiteSubjectCode').val('');
+                                    $('#subjectDetailsTable').hide(); // Hide table on error
                                 }
                             });
                         } else {
-                            $('#subjectDetailsTable').hide();
-                            $('#PreRequisiteSubjectCode').val('');
-                            $('#CoRequisiteSubjectCode').val('');
+                            $('#subjectDetailsTable').hide(); // Hide table if input is empty
                         }
                     });
                 });
             </script>
-
-
-        <!-- Submit Button -->
-        <button class="btn btn-primary mt-3" type="submit">Save</button>
-    </div>
+            <!-- Submit Button -->
+            <button class="btn btn-primary mt-3" type="submit">Save</button>
+        </div>
 </form>
