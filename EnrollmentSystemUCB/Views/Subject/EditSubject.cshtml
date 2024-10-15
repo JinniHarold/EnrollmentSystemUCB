@@ -39,11 +39,13 @@
                         <label for="floatingPassword">Description:</label>
                         <span asp-validation-for="SubjectDescription" class="text-danger"></span>
                     </div>
+                    @*Subject Units*@
                     <div class="form-floating mb-sm-3">
                         <input type="text" class="form-control" asp-for="SubjectUnits">
                         <label for="floatingPassword">Units:</label>
                         <span asp-validation-for="SubjectUnits" class="text-danger"></span>
                     </div>
+                    @*Subject Offering*@
                     <div class="input-group mb-sm-3">
                         <label class="input-group-text" for="inputGroupSelect01">Offering</label>
                         <select class="form-select" asp-for="SubjectOffering" id="inputGroupSelect01">
@@ -54,6 +56,7 @@
                         </select>
                         <span asp-validation-for="SubjectOffering" class="text-danger"></span>
                     </div>
+                    @*Subject Category*@
                     <div class="input-group mb-sm-3">
                         <label class="input-group-text" for="inputGroupSelect01">Category</label>
                         <select class="form-select" asp-for="SubjectCategory" id="inputGroupSelect01">
@@ -63,6 +66,7 @@
                         </select>
                         <span asp-validation-for="SubjectCategory" class="text-danger"></span>
                     </div>
+                    @*Subject Course*@
                     <div class="input-group mb-sm-3">
                         <label class="input-group-text" for="inputGroupSelect01">Course</label>
                         <select class="form-select" asp-for="SubjectCourse" id="inputGroupSelect01">
@@ -73,6 +77,7 @@
                         </select>
                         <span asp-validation-for="SubjectCourse" class="text-danger"></span>
                     </div>
+                    @*Subject Curriculum year*@
                     <div class="form-floating mb-sm-3">
                         <input type="text" class="form-control" asp-for="SubjectCurrYear">
                         <label for="floatingPassword">Curriculum Year:</label>
