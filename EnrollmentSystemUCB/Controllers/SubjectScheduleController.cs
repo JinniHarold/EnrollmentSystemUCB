@@ -30,6 +30,7 @@ namespace EnrollmentSystemUCB.Controllers
 
             var subjectSched = new SubjectSchedule
             {
+                SubjectEDPCode = viewModel.SubjectEDPCode,
                 SubjectCode = viewModel.SubjectCode,
                 SUbjectDescription = viewModel.SUbjectDescription,
                 SubjectTimeStart = viewModel.SubjectTimeStart,
