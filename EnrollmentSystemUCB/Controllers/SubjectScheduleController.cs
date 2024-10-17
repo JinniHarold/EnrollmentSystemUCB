@@ -40,7 +40,7 @@ namespace EnrollmentSystemUCB.Controllers
                 SubjectSY = viewModel.SubjectSY
             };
 
-            await dbContext.Subjects.AddAsync(subjectSched);
+            await dbContext.SubjectSchedules.AddAsync(subjectSched);
             await dbContext.SaveChangesAsync();
 
             return RedirectToAction("ListSubject", "Subject");
