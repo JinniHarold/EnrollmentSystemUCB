@@ -14,7 +14,7 @@ namespace EnrollmentSystemUCB.Models
 
         public string SubjectDescription { get; set; }
         public TimeOnly SubjectTimeStart { get; set; }
-        public TimeOnly SubjectTimeEnd { get; set; }
+        public TimeOnly SubjectTimeEnd { geat; set; }
         public string SubjectDays { get; set; }
         public string SubjectSection { get; set; }
         public string SubjectSY { get; set; }
