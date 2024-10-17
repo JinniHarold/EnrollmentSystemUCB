@@ -50,7 +50,7 @@
                     <a class="btn btn-primary" asp-controller="Subject" asp-action="EditSubject" asp-route-SubjectCode="@subject.SubjectCode">Information</a>
                 </td>
                 <td>
-                    <a class="btn btn-primary">Schedule</a>
+                    <a class="btn btn-primary" asp-controller="SubjectSchedule" asp-action="AddSubjectSchedule" asp-route-SubjectCode="@subject.SubjectCode">Schedule</a>
                 </td>
             </tr>
         }
