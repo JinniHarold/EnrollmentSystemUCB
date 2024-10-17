@@ -11,7 +11,7 @@ namespace EnrollmentSystemUCB.Models.Entities
         [ForeignKey("SubjectCode")]
         public virtual Subject Subject { get; set; }
 
-        public string SubjectDescription { get; set; }
+        public string SUbjectDescription { get; set; }
         public TimeOnly SubjectTimeStart{ get; set; }
         public TimeOnly SubjectTimeEnd{ get; set; }
         public string SubjectDays { get; set; }
