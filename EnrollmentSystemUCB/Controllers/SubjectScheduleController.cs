@@ -28,20 +28,18 @@ namespace EnrollmentSystemUCB.Controllers
                 return View(viewModel);
             }
 
-            var subject = new Subject
+            var subjectSched = new SubjectSchedule
             {
                 SubjectCode = viewModel.SubjectCode,
-                SubjectDescription = viewModel.SubjectDescription,
-                SubjectUnits = viewModel.SubjectUnits,
-                SubjectOffering = viewModel.SubjectOffering,
-                SubjectCategory = viewModel.SubjectCategory,
-                SubjectCourse = viewModel.SubjectCourse,
-                SubjectCurrYear = viewModel.SubjectCurrYear,
-                SubjectPre = viewModel.SubjectPre ?? " ",
-                SubjectCo = viewModel.SubjectCo ?? " ",
+                SUbjectDescription = viewModel.SUbjectDescription,
+                SubjectTimeStart = viewModel.SubjectTimeStart,
+                SubjectTimeEnd = viewModel.SubjectTimeEnd,
+                SubjectDays = viewModel.SubjectDays,
+                SubjectSection = viewModel.SubjectSection,
+                SubjectSY = viewModel.SubjectSY
             };
 
-            await dbContext.Subjects.AddAsync(subject);
+            await dbContext.Subjects.AddAsync(subjectSched);
             await dbContext.SaveChangesAsync();
 
             return RedirectToAction("ListSubject", "Subject");
