@@ -14,17 +14,27 @@
     <div class="text-center">
         <h1 class="display-4">Welcome University of Cebu</h1>
         <h1 class="display-4">Add Schedule</h1>
-
-        <!-- Subject Code -->
-        <div class="form-floating mb-sm-3">
-            <input type="text" class="form-control" asp-for="SubjectCode" readonly>
-            <label>Subject Code:</label>
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Subject Code -->
+                <div class="form-floating mb-sm-3">
+                    <input type="text" class="form-control" asp-for="SubjectCode" readonly>
+                    <label>Subject Code:</label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <!-- Subject Description -->
+                <div class="form-floating mb-sm-3">
+                    <input type="text" class="form-control" asp-for="SUbjectDescription" readonly>
+                    <label>Subject Description:</label>
+                </div>
+            </div>
         </div>
-
-        <!-- Subject Description -->
+        
+        <!-- Subject EDP Code -->
         <div class="form-floating mb-sm-3">
-            <input type="text" class="form-control" asp-for="SUbjectDescription" readonly>
-            <label>Subject Description:</label>
+            <input type="text" class="form-control" asp-for="SubjectEDPCode" required>
+            <label>EDP Code:</label>
         </div>
 
         <!-- Subject Time Start -->
