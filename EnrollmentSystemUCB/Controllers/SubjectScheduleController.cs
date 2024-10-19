@@ -27,6 +27,8 @@ namespace EnrollmentSystemUCB.Controllers
             {
                 return View(viewModel);
             }
+            viewModel.SubjectCode = subjModel.SubjectCode;
+            viewModel.SUbjectDescription = subjModel.SubjectDescription;
 
             var subjectSched = new SubjectSchedule
             {
