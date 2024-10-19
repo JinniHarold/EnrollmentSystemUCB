@@ -14,13 +14,13 @@ namespace EnrollmentSystemUCB.Controllers
         {
             this.dbContext = dbContext;
         }
-
+        [HttpGet]
         public IActionResult AddSubjectSchedule()
         {
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> AddSubjectSchedule(AddSubjectScheduleViewModel viewModel)
+        public async Task<IActionResult> AddSubjectSchedule(AddSubjectScheduleViewModel viewModel, AddSubjectViewModel subjModel)
         {
 
             if (!ModelState.IsValid)
