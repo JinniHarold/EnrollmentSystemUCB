@@ -1,4 +1,4 @@
-﻿@model EnrollmentSystemUCB.Models.AddSubjectViewModel
+﻿@model EnrollmentSystemUCB.Models.AddSubjectScheduleViewModel
 
 <style>
     .rounded-square {
@@ -10,20 +10,54 @@
         margin: auto; /* Center the form on the page */
     }
 </style>
-
 <form method="post" class="rounded-square">
     <div class="text-center">
         <h1 class="display-4">Welcome University of Cebu</h1>
-        <h1 class="display-4">Edit Schedule</h1>
-        @*Subject Code*@
+        <h1 class="display-4">Add Schedule</h1>
+
+        <!-- Subject Code -->
         <div class="form-floating mb-sm-3">
             <input type="text" class="form-control" asp-for="SubjectCode" readonly>
             <label>Subject Code:</label>
         </div>
-        @*Subject Description*@
+
+        <!-- Subject Description -->
         <div class="form-floating mb-sm-3">
-            <input type="text" class="form-control" asp-for="SubjectDescription" readonly>
+            <input type="text" class="form-control" asp-for="SUbjectDescription" readonly>
             <label>Subject Description:</label>
         </div>
+
+        <!-- Subject Time Start -->
+        <div class="form-floating mb-sm-3">
+            <input type="time" class="form-control" asp-for="SubjectTimeStart" required>
+            <label>Time Start:</label>
+        </div>
+
+        <!-- Subject Time End -->
+        <div class="form-floating mb-sm-3">
+            <input type="time" class="form-control" asp-for="SubjectTimeEnd" required>
+            <label>Time End:</label>
+        </div>
+
+        <!-- Subject Days -->
+        <div class="form-floating mb-sm-3">
+            <input type="text" class="form-control" asp-for="SubjectDays" required>
+            <label>Days (e.g., Mon, Wed, Fri):</label>
+        </div>
+
+        <!-- Subject Section -->
+        <div class="form-floating mb-sm-3">
+            <input type="text" class="form-control" asp-for="SubjectSection" required>
+            <label>Section:</label>
+        </div>
+
+        <!-- Subject SY -->
+        <div class="form-floating mb-sm-3">
+            <input type="text" class="form-control" asp-for="SubjectSY" required>
+            <label>School Year:</label>
+        </div>
+
+        <!-- Save Button -->
+        <button type="submit" class="btn btn-primary">Save</button>
     </div>
 </form>
