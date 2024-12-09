@@ -1,108 +1,170 @@
 ﻿@model EnrollmentSystemUCB.Models.AddSubjectScheduleViewModel
 
 <style>
+    h1 {
+        font-family: "Rubik Mono One", monospace;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 3rem;
+        color: #000;
+    }
+
+    body {
+        background: linear-gradient(to bottom left, #bbfaf7 30%, #b3fcf9 20%, #a1f7f4 50%);
+        font-family: Arial, sans-serif;
+        padding-top: 60px;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: 30px auto;
+    }
+
+    .card {
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        background-color: white;
+        border: none;
+    }
+
+    .header {
+        background-color: #078a88;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        border-radius: 8px 8px 0 0;
+        padding: 10px;
+    }
+
+    .form-control {
+        border-radius: 5px;
+        border: 1px solid #000000;
+    }
+
+    .btn-primary {
+        background-color: #7dd4d4;
+        border: none;
+        color: #000000;
+    }
+
+    .btn-primary:hover {
+        background-color: #116363;
+    }
+
+    .days-checkbox {
+        display: flex;
+        gap: 10px;
+    }
+
+    .days-checkbox label {
+        font-size: 1rem;
+    }
+
     .rounded-square {
-        border: 2px solid #007bff; /* Border color */
-        border-radius: 15px; /* Rounded corners */
-        padding: 20px; /* Space inside the border */
-        background-color: #f8f9fa; /* Light background color */
-        max-width: 1500px; /* Optional: limit width */
-        margin: auto; /* Center the form on the page */
+        border: 2px solid #007bff;
+        border-radius: 15px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        max-width: 1500px;
+        margin: auto;
     }
 </style>
 
-<form method="post" asp-action="AddSubjectSchedule" class="rounded-square">
-    <div class="text-center">
-        <h1 class="display-4">Welcome University of Cebu</h1>
-        <h1 class="display-4">Subject   Schedule</h1>
-        <div class="row">
-            <div class="col-md-4">
-                <!-- Subject Code -->
-                <div class="form-floating mb-sm-3">
-                    <input type="text" class="form-control" asp-for="SubjectCode" readonly>
-                    <label>Subject Code:</label>
+<div class="container">
+    <h1 class="text-center mb-4">Subject Schedule</h1>
+
+    <div class="card">
+        <div class="header">
+            <i class="fas fa-calendar-alt me-2"></i>
+            Subject Schedule Form
+        </div>
+        <div class="card-body">
+            <form method="post" asp-action="AddSubjectSchedule" class="rounded-square">
+                <div class="text-center">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="subjectCode" class="form-label">Subject Code:</label>
+                                <input type="text" id="subjectCode" class="form-control" asp-for="SubjectCode" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="subjectDescription" class="form-label">Subject Description:</label>
+                                <input type="text" id="subjectDescription" class="form-control" asp-for="SUbjectDescription" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="edpCode" class="form-label">EDP Code:</label>
+                                <input type="text" id="edpCode" class="form-control" asp-for="SubjectEDPCode" required readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="timeStart" class="form-label">Time Start:</label>
+                            <input type="time" id="timeStart" class="form-control" asp-for="SubjectTimeStart" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="timeEnd" class="form-label">Time End:</label>
+                            <input type="time" id="timeEnd" class="form-control" asp-for="SubjectTimeEnd" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Days:</label>
+                        <div class="days-checkbox">
+                            <div class="form-check">
+                                <input type="checkbox" value="M" id="monday" class="form-check-input" onchange="updateDays()">
+                                <label for="monday" class="form-check-label">M</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" value="T" id="tuesday" class="form-check-input" onchange="updateDays()">
+                                <label for="tuesday" class="form-check-label">T</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" value="W" id="wednesday" class="form-check-input" onchange="updateDays()">
+                                <label for="wednesday" class="form-check-label">W</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" value="Th" id="thursday" class="form-check-input" onchange="updateDays()">
+                                <label for="thursday" class="form-check-label">Th</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" value="F" id="friday" class="form-check-input" onchange="updateDays()">
+                                <label for="friday" class="form-check-label">F</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <input asp-for="SubjectDays" type="text" class="form-control" readonly id="subjectDaysField">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="section" class="form-label">Section:</label>
+                        <input type="text" id="section" class="form-control" asp-for="SubjectSection" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="schoolYear" class="form-label">School Year:</label>
+                        <input type="text" id="schoolYear" class="form-control" asp-for="SubjectSY" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Save</button>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <!-- Subject Description -->
-                <div class="form-floating mb-sm-3">
-                    <input asp-for="SUbjectDescription" type="text" class="form-control" readonly>
-                    <label>Subject Description:</label>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <!-- Subject EDP Code -->
-                <div class="form-floating mb-sm-3">
-                    <input asp-for="SubjectEDPCode" type="text" class="form-control" required readonly>
-                    <label>EDP Code:</label>
-                </div>
-            </div>
-        </div>   
-        
-        <!-- Subject Time Start -->
-        <div class="form-floating mb-sm-3">
-            <input asp-for="SubjectTimeStart" type="time" class="form-control" required>
-            <label>Time Start:</label>
+            </form>
         </div>
-
-        <!-- Subject Time End -->
-        <div class="form-floating mb-sm-3">
-            <input asp-for="SubjectTimeEnd" type="time" class="form-control" required>
-            <label>Time End:</label>
-        </div>
-
-        <!-- Subject Days -->
-        <div class="row mb-3">
-            <div class="col-md-4">
-                <label>Days:</label>
-                <div id="daysToggle" class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-outline-primary">
-                        <input type="checkbox" value="M" autocomplete="off" onchange="updateDays()"> M
-                    </label>
-                    <label class="btn btn-outline-primary">
-                        <input type="checkbox" value="T" autocomplete="off" onchange="updateDays()"> T
-                    </label>
-                    <label class="btn btn-outline-primary">
-                        <input type="checkbox" value="W" autocomplete="off" onchange="updateDays()"> W
-                    </label>
-                    <label class="btn btn-outline-primary">
-                        <input type="checkbox" value="Th" autocomplete="off" onchange="updateDays()"> Th
-                    </label>
-                    <label class="btn btn-outline-primary">
-                        <input type="checkbox" value="F" autocomplete="off" onchange="updateDays()"> F
-                    </label>
-                    <label class="btn btn-outline-primary">
-                        <input type="checkbox" value="S" autocomplete="off" onchange="updateDays()"> S
-                    </label>
-                </div>
-                <span asp-validation-for="SubjectDays" class="text-danger"></span>
-            </div>
-            <div class="col-md-2">
-                <input asp-for="SubjectDays" type="text" class="form-control" readonly id="subjectDaysField" />
-            </div>
-        </div>
-
-        
-        <!-- Subject Section -->
-        <div class="form-floating mb-sm-3">
-            <input asp-for="SubjectSection" type="text" class="form-control" required>
-            <label>Section:</label>
-        </div>
-
-        <!-- Subject SY -->
-        <div class="form-floating mb-sm-3">
-            <input asp-for="SubjectSY" type="text" class="form-control" required>
-            <label>School Year:</label>
-        </div>
-
-        <!-- Save Button -->
-        <button class="btn btn-primary mt-3" type="submit">Save</button>
     </div>
-</form>
+</div>
 
 <script>
     function updateDays() {
-        const checkboxes = document.querySelectorAll('#daysToggle input[type="checkbox"]');
+        const checkboxes = document.querySelectorAll('.days-checkbox input[type="checkbox"]');
         let selectedDays = '';
 
         checkboxes.forEach((checkbox) => {
@@ -111,7 +173,6 @@
             }
         });
 
-        // Update the readonly field with selected days
         document.getElementById('subjectDaysField').value = selectedDays;
     }
 </script>

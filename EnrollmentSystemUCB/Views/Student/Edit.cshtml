@@ -1,11 +1,14 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+
 @{
 }
 
 @model EnrollmentSystemUCB.Models.Entities.Student
+
 <style>
+    /* General Styling for the Page */
     .rounded-square {
         border: 1px solid #ccc; /* Light border */
         border-radius: 15px; /* Rounded corners */
@@ -142,7 +145,7 @@
     <div class="rounded-square mb-4 p-3">
         <p>Subjects Enrolled</p>
         <div class="table-container table-bordered text-center">
-            <table class="table caption-top">
+            <table class="table caption-top" id="subjectScheduleTable">
                 <thead>
                     <tr>
                         <th>EDP CODE</th>
@@ -154,7 +157,6 @@
                     </tr>
                 </thead>
                 <tbody id="enrolledSubject">
-
                 </tbody>
             </table>
         </div>
@@ -207,13 +209,13 @@
                     data.enrolledSubjects.forEach(subject => {
                         const row = document.createElement("tr");
                         row.innerHTML = `
-                            <td>${subject.subjectEDPCode}</td>
-                            <td>${subject.subjectCode}</td>
-                            <td>${subject.description}</td>
-                            <td>${subject.days}</td>
-                            <td>${subject.schedule}</td>
-                            <td>${subject.units}</td>
-                        `;
+                                    <td>${subject.subjectEDPCode}</td>
+                                    <td>${subject.subjectCode}</td>
+                                    <td>${subject.description}</td>
+                                    <td>${subject.days}</td>
+                                    <td>${subject.schedule}</td>
+                                    <td>${subject.units}</td>
+                                `;
                         enrolledSubjectsTable.appendChild(row);
 
                         // Add the current subject's units to the total
@@ -235,5 +237,3 @@
     // Call the function on page load
     document.addEventListener("DOMContentLoaded", loadEnrolledSubjects);
 </script>
-
-

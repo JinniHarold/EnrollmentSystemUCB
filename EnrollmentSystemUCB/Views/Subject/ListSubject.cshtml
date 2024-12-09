@@ -1,66 +1,146 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+
 @{
 }
 
 @model List<EnrollmentSystemUCB.Models.Entities.Subject>
 
 <style>
-    th {
-        text-align: center; /* Center text horizontally */
-        vertical-align: middle; /* Center text vertically */
+    body {
+        background: linear-gradient(to bottom left, #bbfaf7 30%, #b3fcf9 20%, #a1f7f4 50%);
+        font-family: Arial, sans-serif;
+        padding-top: 60px;
     }
+
+    .container {
+        max-width: 1500px;
+        margin: 30px auto;
+        padding: 30px;
+        background-color: white;
+        border-radius: 15px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        font-family: "Rubik Mono One", monospace;
+        font-weight: 200;
+        font-style: normal;
+        font-size: 3rem;
+        text-align: center;
+        color: #000;
+    }
+
+    th {
+        text-align: center;
+        vertical-align: middle;
+        background-color: #7dd4d4;
+        color: black;
+    }
+
     td {
-        text-align: center; /* Center text horizontally */
-        vertical-align: middle; /* Center text vertically */
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .btn-primary {
+        background-color: #7dd4d4;
+        border: none;
+        color: #000000;
+        border-radius: 8px;
+    }
+
+        .btn-primary:hover {
+            background-color: #116363;
+        }
+
+    .btn-prim {
+        background-color: #00abba;
+        border-color: #004D40;
+        color: #0D1010;
+        border-radius: 10px;
+    }
+
+    .btn-primary1 {
+        background-color: #B6F0F2;
+        border-color: #004D40;
+        color: #0D1010;
+        border-radius: 10px;
+    }
+
+    .btn-primary2 {
+        background-color: #B6F0F2;
+        border-color: #004D40;
+        color: #0D1010;
+        border-radius: 10px;
+    }
+
+    .btn-prim:hover {
+        background-color: magenta;
+        color: #0D1010;
+        border-color: #747878;
+    }
+
+    .btn-primary1:hover {
+        background-color: #86D671;
+        color: #0D1010;
+        border-color: #747878;
+    }
+
+    .btn-primary2:hover {
+        background-color: #F65D5D;
+        color: #0D1010;
+        border-color: #747878;
     }
 </style>
 
-<div class="row">
-    <div class="col-md-5"
-        <h1>LIST OF SUBJECTS BRO</h1>
+<div class="container">
+    <div class="row mb-3">
+        <div class="col-md-5">
+            <h1>LIST OF SUBJECTS</h1>
+        </div>
+        <div class="col-md-7 text-end">
+            <a class="btn btn-primary" asp-controller="Subject" asp-action="AddSubject">Add Subject</a>
+        </div>
     </div>
-    <div class="col-md-7">
-        <a class="btn btn-primary" asp-controller="Subject" asp-action="AddSubject">Add Subject</a>
-    </div>
-</div>
-<table class="table caption-top">
-    <thead>
-        <tr>
-            <th class="col-2">Subject Code</th>
-            <th class="col-2">Description</th>
-            <th class="col-2">Units</th>
-            <th class="col-2">Category</th>
-            <th class="col-2">Offering</th>
-            <th class="col-2">Course</th>
-            <th class="col-2">Curriculum Year</th>
-            <th class="col-2">Pre-Requisite</th>
-            <th class="col-2">Co-Requisite</th>
-            <th class="col-4" colspan="2">EDIT</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach(var subject in Model)
-        {
-            <tr>
-                <td>@subject.SubjectCode</td>
-                <td>@subject.SubjectDescription</td>
-                <td>@subject.SubjectUnits</td>
-                <td>@subject.SubjectCategory</td>
-                <td>@subject.SubjectOffering</td>
-                <td>@subject.SubjectCourse</td>
-                <td>@subject.SubjectCurrYear</td>
-                <td>@subject.SubjectPre</td>
-                <td>@subject.SubjectCo</td>
-                <td>
-                    <a class="btn btn-primary" asp-controller="Subject" asp-action="EditSubject" asp-route-SubjectCode="@subject.SubjectCode">Information</a>
-                </td>
-                <td>
-                    <a class="btn btn-primary" asp-controller="SubjectSchedule" asp-action="AddSubjectSchedule" asp-route-subjectCode="@subject.SubjectCode">Schedule</a>
 
-                </td>
+    <table class="table table-bordered table-sm">
+        <thead>
+            <tr>
+                <th class="col-2">Subject Code</th>
+                <th class="col-2">Description</th>
+                <th class="col-2">Units</th>
+                <th class="col-2">Category</th>
+                <th class="col-2">Offering</th>
+                <th class="col-2">Course</th>
+                <th class="col-2">Curriculum Year</th>
+                <th class="col-2">Pre-Requisite</th>
+                <th class="col-2">Co-Requisite</th>
+                <th class="col-4" colspan="2">EDIT</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var subject in Model)
+            {
+                <tr>
+                    <td>@subject.SubjectCode</td>
+                    <td>@subject.SubjectDescription</td>
+                    <td>@subject.SubjectUnits</td>
+                    <td>@subject.SubjectCategory</td>
+                    <td>@subject.SubjectOffering</td>
+                    <td>@subject.SubjectCourse</td>
+                    <td>@subject.SubjectCurrYear</td>
+                    <td>@subject.SubjectPre</td>
+                    <td>@subject.SubjectCo</td>
+                    <td>
+                        <a class="btn btn-primary" asp-controller="Subject" asp-action="EditSubject" asp-route-SubjectCode="@subject.SubjectCode">Information</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" asp-controller="SubjectSchedule" asp-action="AddSubjectSchedule" asp-route-subjectCode="@subject.SubjectCode">Schedule</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -2,14 +2,174 @@
     Layout = "~/Views/Shared/_MinimalLayout.cshtml";
 }
 
-<div class="text-center">
-    <h1>HELLO WE ARE CINTO AND CREUS, PLEASE ENROLL :(</h1>
-    <div class="row justify-content-center mt-4">
-        <div class="col-md-3">
-            <a class="btn btn-primary w-100" asp-area="" asp-controller="Login" asp-action="StudentLogin">Login as Student</a>
-        </div>
-        <div class="col-md-3">
-            <a class="btn btn-secondary w-100" asp-area="" asp-controller="Login" asp-action="AdminLogin">Login as Admin</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Georgia&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        h1 {
+            font-family: "Rubik Mono One", monospace;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 3rem;
+            color: #000;
+        }
+
+        p {
+            font-family: "Rubik Mono One", monospace;
+            font-weight: 400;
+            font-size: 1rem;
+            color: #000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom left, #bbfaf7 30%, #b3fcf9 20%, #a1f7f4 50%);
+            display: flex;
+            padding-top: 35px;
+        }
+
+
+        .inner-box {
+            background-color: #07aef0; /* Light magenta background for the inner boxes */
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0; /* Adds spacing between boxes */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .title {
+            font-family: "Georgia", serif;
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: black; /* Set the text color to black */
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #05cff7, 0 0 30px #05cff7, 0 0 40px #05cff7, 0 0 50px #05cff7, 0 0 75px #05cff7; /* Optional: Keep a static glow effect */
+            text-align: center;
+        }
+
+        .button-container {
+            margin-bottom: 40px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+            background-color: #2dba5c;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+            .btn:hover {
+                background-color: #1af061;
+            }
+
+        .btn-admin {
+            background-color: #8a1313;
+        }
+
+            .btn-admin:hover {
+                background-color: #f00a0a;
+            }
+
+        .about {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #000;
+            margin-top: 40px;
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #05cff7, 0 0 30px #05cff7, 0 0 40px #05cff7, 0 0 50px #05cff7, 0 0 75px #05cff7;
+        }
+
+        .about-title {
+            font-family: "Rubik Mono One", monospace;
+            font-weight: 400;
+            font-size: 2rem; /* Larger font */
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .about p {
+            font-size: 1.2rem;
+            color: #333;
+            line-height: 1.8;
+            margin-top: 10px;
+            text-align: center;
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff, 0 0 50px #fff, 0 0 75px #fff;
+        }
+
+        .about-icon {
+            font-size: 2rem;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .about-container {
+            padding: 20px;
+            background-color: #07aef0; /* Light magenta background for the about container */
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div>
+            <div style="position: relative; padding-top: 50%; transform: translateY(-50%);">
+                <h1 class="title">CINTO AND CREUS PORTAL</h1>
+
+                <div class="button-container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-3">
+                            <a class="btn btn-primary w-100" asp-area="" asp-controller="Login" asp-action="StudentLogin">
+                                <i class="fas fa-user-graduate"></i> Login as Student
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a class="btn btn-admin w-100" asp-area="" asp-controller="Login" asp-action="AdminLogin">
+                                <i class="fas fa-user-cog"></i> Login as Admin
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about">
+                    <h2 class="about-title" style="font-family: 'Georgia', serif;">About This Portal</h2>
+                    <p style="font-family: 'Times New Roman', serif;">We are here to make things easier and more efficient for everyone!</p>
+                </div>
+            </div>
+            
+
         </div>
     </div>
-</div>
+
+</body>
+</html>

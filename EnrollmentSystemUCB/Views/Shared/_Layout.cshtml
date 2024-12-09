@@ -6,105 +6,140 @@
     <title>@ViewData["Title"] - EnrollmentSystemUCB</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/EnrollmentSystemUCB.styles.css" asp-append-version="true" />
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+            margin: 0;
+        }
+
+        /* Fixed header styles */
+        .fixed-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 5;
+            background: linear-gradient(to right, #007bff, #28a745, #17a2b8);
+            color: white;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        #openNavBtn {
+            font-size: 30px;
+            cursor: pointer;
+            color: white;
+        }
+
+        /* Sidenav styles */
+        .sidenav {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: linear-gradient(to bottom, #6a11cb, #2575fc);
+            color: white;
+            overflow-x: hidden;
+            transition: transform 0.5s ease-in-out;
+            padding-top: 60px;
+            z-index: 10;
+        }
+
+        .sidenav.closed {
+            transform: translateX(-250px);
+        }
+
+        .sidenav a {
+            padding: 10px 15px;
+            font-size: 18px;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .sidenav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #f8f9fa;
+        }
+
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 20px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        /* Main content area */
+        main {
+            margin-top: 60px;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+         .fixed-header {
+            background: linear-gradient(to right, #007bff, #28a745, #17a2b8); /* Existing header background */
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+         }
+
+        .fixed-header .navbar-brand {
+            color: white; /* Set the font color to white */
+            text-decoration: none;
+            font-size: 1.5rem;
+        }
+
+        .fixed-header .navbar-brand:hover {
+            color: #ddd; /* Optional hover effect */
+        }
+
+        .fixed-header .navbar-brand {
+        color: white; /* Set the font color to white */
+        text-decoration: none; /* Ensure no underline */
+        font-size: 1.5rem; /* Optional: Adjust font size if needed */
+        }
+
+        .fixed-header .navbar-brand:hover {
+            color: #ddd; /* Optional: Add a hover effect */
+        }
+    </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <head>
-                <meta name="viewport" content="width=device-width, initial-scale=1">
-                <style>
-                    body {
-                      font-family: "Lato", sans-serif;
-                    }
-
-                    .sidenav {
-                      height: 100%;
-                      width: 0;
-                      position: fixed;
-                      z-index: 1;
-                      top: 0;
-                      left: 0;
-                      background-color: #111;
-                      overflow-x: hidden;
-                      transition: 0.5s;
-                      padding-top: 60px;
-                    }
-
-                    .sidenav a {
-                      padding: 8px 8px 8px 32px;
-                      text-decoration: none;
-                      font-size: 25px;
-                      color: #818181;
-                      display: block;
-                      transition: 0.3s;
-                    }
-
-                    .sidenav a:hover {
-                      color: #f1f1f1;
-                    }
-
-                    .sidenav .closebtn {
-                      position: absolute;
-                      top: 0;
-                      right: 25px;
-                      font-size: 36px;
-                      margin-left: 50px;
-                    }
-                </style>
-            </head>
-            <body>
-                <div id="mySidenav" class="sidenav">
-                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Student" asp-action="List">List of Students</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Subject" asp-action="ListSubject">List Of Subjects</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Enrollment" asp-action="AddEnrollment">ENROLL</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">LOG OUT</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
-
-                <script>
-                    function openNav() {
-                        document.getElementById("mySidenav").style.width = "250px";
-                    }
-
-                    function closeNav() {
-                        document.getElementById("mySidenav").style.width = "0";
-                    }
-                </script>
-
-            </body>
-            <div class="container-fluid">
-                <a asp-controller="Student" asp-action="List" style="text-decoration: none; color: inherit;">
-                    <h4>EnrollmentSystemUCB</h4>
-                </a>
+        <nav>
+            <div class="fixed-header">
+                <span id="openNavBtn" onclick="toggleNav()">&#9776;</span>
+                <a class="navbar-brand ms-3" asp-controller="Subject" asp-action="ListSubject">EnrollmentSystemUCB</a>
             </div>
         </nav>
+
+        <div id="mySidenav" class="sidenav closed">
+            <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()">&times;</a>
+            <a asp-controller="Student" asp-action="List">
+                <span class="icon">&#128217;</span> List of Students
+            </a>
+            <a asp-controller="Subject" asp-action="ListSubject">
+                <span class="icon">&#128218;</span> List of Subjects
+            </a>
+            <a asp-controller="Enrollment" asp-action="AddEnrollment">
+                <span class="icon">&#128221;</span> Enroll
+            </a>
+            <a asp-controller="Home" asp-action="Index">
+                <span class="icon">&#128274;</span> Log Out
+            </a>
+        </div>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -113,9 +148,17 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - EnrollmentSystemUCB - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2024 - EnrollmentSystemUCB - <a asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
+    <script>
+        function toggleNav() {
+            const sidenav = document.getElementById("mySidenav");
+            sidenav.classList.toggle("closed");
+        }
+    </script>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

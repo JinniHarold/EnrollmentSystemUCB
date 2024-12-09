@@ -1,43 +1,111 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+
 @{
 }
 
 @model List<EnrollmentSystemUCB.Models.Entities.Student>
-<div class="row">
-    <div class="col-md-5">
-        <h1>LIST OF STUDENTS BRO</h1>
+
+<style>
+    body {
+        background: linear-gradient(to bottom left, #bbfaf7 30%, #b3fcf9 20%, #a1f7f4 50%);
+        font-family: Arial, sans-serif;
+        padding-top: 60px;
+    }
+
+    .table-container {
+        margin: 30px auto;
+        width: 95%;
+        max-width: 1200px;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    h1 {
+        font-family: "Rubik Mono One", monospace;
+        font-weight: 300;
+        font-size: 3rem;
+        color: #000;
+    }
+
+    .btn-add {
+        background-color: #007bff;
+        color: white;
+        border-radius: 20px;
+        font-size: 1em;
+    }
+
+    .btn-add i {
+        margin-right: 5px;
+    }
+
+    .btn-edit {
+        background-color: #00796b;
+        color: white;
+        border-radius: 5px;
+        padding: 8px 16px;
+        cursor: pointer;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .btn-edit:hover {
+        background-color: #004d40;
+        transform: scale(1.05);
+    }
+
+    .btn:hover {
+        background-color: magenta !important;
+        color: white !important;
+        border-color: magenta !important;
+    }
+
+    .table th, .table td {
+        text-align: center;
+        vertical-align: middle;
+    }
+</style>
+
+<div class="table-container">
+    <div class="header">
+        <h1 class="text-center mb-4">LIST OF STUDENTS BRO</h1>
+        <a class="btn btn-add" asp-controller="Student" asp-action="Add"><i class="fas fa-plus"></i> Add New Student</a>
     </div>
-    <div class="col-md-2">
-        <a class="btn btn-primary" asp-controller="Student" asp-action="Add">Add Student</a>
-    </div>
-</div>
-<table class="table caption-top">
-    <thead>
-        <tr>
-            <th>ID Num</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Middle Initial</th>
-            <th>Course</th>
-            <th>Year</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach(var student in Model)
-        {
+    <table class="table table-hover">
+        <thead style="background-color: #078a88; color: white;">
             <tr>
-                <td>@student.Id</td>
-                <td>@student.StudFName</td>
-                <td>@student.StudLName</td>
-                <td>@student.StudMInitial</td>
-                <td>@student.StudCourse</td>
-                <td>@student.StudYear</td>
-                <td>
-                    <a class="btn btn-primary" asp-controller="Student" asp-action="Edit" asp-route-id="@student.Id">Edit</a>
-                </td>
+                <th>ID Num</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Middle Initial</th>
+                <th>Course</th>
+                <th>Year</th>
+                <th>Actions</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var student in Model)
+            {
+                <tr>
+                    <td>@student.Id</td>
+                    <td>@student.StudFName</td>
+                    <td>@student.StudLName</td>
+                    <td>@student.StudMInitial</td>
+                    <td>@student.StudCourse</td>
+                    <td>@student.StudYear</td>
+                    <td>
+                        <a class="btn btn-edit" asp-controller="Student" asp-action="Edit" asp-route-id="@student.Id">Edit</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
