@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - EnrollmentSystemUCB</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/EnrollmentSystemUCB.styles.css" asp-append-version="true" />
+</head>
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    main {
+        flex: 1;
+    }
+
+    footer {
+        text-align: left;
+        padding: 20px;
+        background-color: #f8f9fa; /* Optional: Footer background color */
+        border-top: 1px solid #e9ecef; /* Optional: Footer border */
+    }
+
+    header {
+        text-align: left;
+        padding: 10px;
+        background-color: #f8f9fa; /* Optional: Footer background color */
+        border-bottom: 1px solid #e9ecef; /* Optional: Footer border */
+    }
+</style>
+<body>
+    <header>
+        <a asp-controller="Home" asp-action="Index" style="text-decoration: none; color: inherit;">
+            <h4>EnrollmentSystemUCB</h4>
+        </a>
+    </header>
+    <main role="main" class="container">
+        @RenderBody()
+    </main>
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2024 - EnrollmentSystemUCB - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+

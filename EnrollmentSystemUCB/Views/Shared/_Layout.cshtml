@@ -73,13 +73,6 @@
                     <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                         <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Student" asp-action="Add">Add Student</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
                                 <a class="nav-link text-light" asp-area="" asp-controller="Student" asp-action="List">List of Students</a>
                             </li>
                         </ul>
@@ -87,14 +80,21 @@
                     <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                         <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Subject" asp-action="AddSubject">Add Subject</a>
+                                <a class="nav-link text-light" asp-area="" asp-controller="Subject" asp-action="ListSubject">List Of Subjects</a>
                             </li>
                         </ul>
                     </div>
                     <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                         <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Subject" asp-action="ListSubject">List Of Subjects</a>
+                                <a class="nav-link text-light" asp-area="" asp-controller="Enrollment" asp-action="AddEnrollment">ENROLL</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">LOG OUT</a>
                             </li>
                         </ul>
                     </div>
@@ -113,11 +113,9 @@
 
             </body>
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">EnrollmentSystemUCB</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                <a asp-controller="Student" asp-action="List" style="text-decoration: none; color: inherit;">
+                    <h4>EnrollmentSystemUCB</h4>
+                </a>
             </div>
         </nav>
     </header>

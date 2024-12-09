@@ -1,0 +1,73 @@
+﻿@{
+    Layout = "~/Views/Shared/_MinimalLayout2.cshtml";
+}
+
+@model EnrollmentSystemUCB.Models.AddStudentViewModel
+
+<form method="post">
+    <div class="text-center">
+        <h1 class="display-4">Welcome University of Cebu</h1>
+        <h1 class="display-4">Student Entry</h1>
+
+        <div class="d-grid gap-2 d-md-block">
+
+            @*First Name TextBox*@
+            <div class="form-floating mb-sm-3">
+                <input type="text" class="form-control" asp-for="StudFName">
+                <label for="floatingPassword">First Name:</label>
+                <span asp-validation-for="StudFName" class="text-danger"></span>
+            </div>
+            @*Middle Name TextBox*@
+            <div class="form-floating mb-sm-3">
+                <input type="text" class="form-control" asp-for="StudMInitial">
+                <label for="floatingPassword">Middle Name:</label>
+            </div>
+            @*Last Name TextBox*@
+            <div class="form-floating mb-sm-3">
+                <input type="text" class="form-control" asp-for="StudLName">
+                <label for="floatingPassword">Last Name:</label>
+                <span asp-validation-for="StudLName" class="text-danger"></span>
+            </div>
+            @* Course Label and Drop Down *@
+            <div class="input-group mb-sm-3">
+                <label class="input-group-text" for="inputGroupSelect01">Course</label>
+                <select class="form-select" asp-for="StudCourse" id="inputGroupSelect01">
+                    <option selected value="">Choose...</option>
+                    <option value="BSIT">BSIT</option>
+                    <option value="BSIS">BSIS</option>
+                    <option value="ACT">ACT</option>
+                </select>
+                <span asp-validation-for="StudCourse" class="text-danger"></span>
+            </div>
+            @*Year TextBox*@
+            <div class="form-floating mb-sm-3">
+                <input type="text" class="form-control" asp-for="StudYear">
+                <label for="floatingPassword">Year:</label>
+                <span asp-validation-for="StudYear" class="text-danger"></span>
+            </div>
+            @*Password*@
+            <div class="form-floating mb-sm-3 row align-items-center">
+                <div class="col-md-3">
+                    <label for="floatingPassword">Password:</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="password" class="form-control" asp-for="Password" id="floatingPassword">
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-outline-secondary" onclick="togglePasswordVisibility()">
+                        Show/Hide Password
+                    </button>
+                </div>
+            </div>
+            <input class="btn btn-primary" type="submit" value="Next">
+        </div>
+</form>
+
+<script>
+    function togglePasswordVisibility() {
+        const passwordField = document.getElementById('floatingPassword');
+        const fieldType = passwordField.getAttribute('type');
+        passwordField.setAttribute('type', fieldType === 'password' ? 'text' : 'password');
+    }
+</script>

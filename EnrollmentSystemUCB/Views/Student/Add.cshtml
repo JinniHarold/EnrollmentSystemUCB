@@ -29,7 +29,7 @@
                 <input type="text" class="form-control" asp-for="StudLName">
                 <label for="floatingPassword">Last Name:</label>
                 <span asp-validation-for="StudLName" class="text-danger"></span>
-            </div>/
+            </div>
             @* Course Label and Drop Down *@
             <div class="input-group mb-sm-3">
                 <label class="input-group-text" for="inputGroupSelect01">Course</label>
@@ -47,9 +47,31 @@
                 <label for="floatingPassword">Year:</label>
                 <span asp-validation-for="StudYear" class="text-danger"></span>
             </div>
-
+            @*Password*@
+            <div class="form-floating mb-sm-3 row align-items-center">
+                <div class="col-md-3">
+                    <label for="floatingPassword">Password:</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="password" class="form-control" asp-for="Password" id="floatingPassword">
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-outline-secondary" onclick="togglePasswordVisibility()">
+                        Show/Hide Password
+                    </button>
+                </div>
+            </div>
             <input class="btn btn-primary" type="submit" value="Save">
         </div>
 </form>
+
+<script>
+    function togglePasswordVisibility() {
+        const passwordField = document.getElementById('floatingPassword');
+        const fieldType = passwordField.getAttribute('type');
+        passwordField.setAttribute('type', fieldType === 'password' ? 'text' : 'password');
+    }
+</script>
 
 

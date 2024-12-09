@@ -15,5 +15,7 @@ namespace EnrollmentSystemUCB.Models.Entities
         public string SubjectCurrYear { get; set; }
         public string SubjectPre { get; set; }
         public string SubjectCo { get; set; }
+        public int SubjClassSize { get; set; }
+        public ICollection<SubjectSchedule> SubjectSchedules { get; set; }
     }
 }

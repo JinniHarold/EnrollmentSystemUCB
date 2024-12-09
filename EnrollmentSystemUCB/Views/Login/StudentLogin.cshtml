@@ -1,0 +1,43 @@
+﻿@{
+    Layout = "~/Views/Shared/_MinimalLayout.cshtml";
+}
+
+<form action="StudentLogin" method="post">
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="login-container border p-4 rounded shadow-sm">
+            <div class="container mt-5">
+                <h2>Student Login</h2>
+                <form method="post" asp-action="StudentLogin">
+                    <div class="mb-3">
+                        <label for="StudentID" class="form-label">Student ID</label>
+                        <input type="text" class="form-control" id="StudentID" name="studentId" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Password" class="form-label">Password</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="Password" name="password" required>
+                            <button type="button" class="btn btn-outline-secondary" onclick="togglePasswordVisibility()">Show</button>
+                        </div>
+                    </div>
+                    @if (ViewBag.ErrorMessage != null)
+                    {
+                        <div class="text-danger">@ViewBag.ErrorMessage</div>
+                    }
+                    <button type="submit" class="btn btn-primary">Login</button>
+                    <a class="nav-link text-black text-center" href="/SignUp/StudentInformation">No account yet? Enroll now!</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+    function togglePasswordVisibility() {
+        const passwordInput = document.getElementById('Password');
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+        } else {
+            passwordInput.type = 'password';
+        }
+    }
+</script>

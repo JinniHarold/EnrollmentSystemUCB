@@ -5,8 +5,14 @@
 }
 
 @model List<EnrollmentSystemUCB.Models.Entities.Student>
-
-<h1>LIST OF STUDENTS BRO</h1>
+<div class="row">
+    <div class="col-md-5">
+        <h1>LIST OF STUDENTS BRO</h1>
+    </div>
+    <div class="col-md-2">
+        <a class="btn btn-primary" asp-controller="Student" asp-action="Add">Add Student</a>
+    </div>
+</div>
 <table class="table caption-top">
     <thead>
         <tr>

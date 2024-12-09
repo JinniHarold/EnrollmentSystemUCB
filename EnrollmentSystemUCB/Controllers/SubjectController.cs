@@ -28,7 +28,7 @@ namespace EnrollmentSystemUCB.Controllers
             {
                 return View(viewModel);
             }
-
+            viewModel.SubjClassSize = 0;
             var subject = new Subject
             {
                 SubjectCode = viewModel.SubjectCode,
@@ -39,7 +39,8 @@ namespace EnrollmentSystemUCB.Controllers
                 SubjectCourse = viewModel.SubjectCourse,
                 SubjectCurrYear = viewModel.SubjectCurrYear,
                 SubjectPre = viewModel.SubjectPre ?? " ",
-                SubjectCo = viewModel.SubjectCo ?? " "
+                SubjectCo = viewModel.SubjectCo ?? " ",
+                SubjClassSize = viewModel.SubjClassSize
             };
 
             await dbContext.Subjects.AddAsync(subject);
@@ -85,9 +86,15 @@ namespace EnrollmentSystemUCB.Controllers
         {
             var subject = await dbContext.Subjects.AsNoTracking().FirstOrDefaultAsync(x => x.SubjectCode == viewModel.SubjectCode);
 
-            if (subject is not null)
+            if (subject != null)
             {
-                dbContext.Subjects.Remove(viewModel);
+                
+                if (subject.SubjectSchedules != null && subject.SubjectSchedules.Any())
+                {
+                    dbContext.SubjectSchedules.RemoveRange(subject.SubjectSchedules);
+                }
+
+                dbContext.Subjects.Remove(subject);
                 await dbContext.SaveChangesAsync();
             }
 

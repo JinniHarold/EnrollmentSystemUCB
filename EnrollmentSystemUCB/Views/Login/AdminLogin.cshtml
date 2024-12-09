@@ -1,0 +1,49 @@
+﻿@{
+    Layout = "~/Views/Shared/_MinimalLayout.cshtml";
+}
+
+<form action="AdminLogin" method="post">
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="login-container border p-4 rounded shadow-sm">
+            <h4 class="text-center mb-4">Admin Login</h4>
+            @if (ViewBag.ErrorMessage != null)
+            {
+                <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+            }
+            <form asp-action="AdminLogin" method="post">
+
+                <label for="username">Username</label>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Username" required />
+                </div>
+                <label for="password" class="col-sm-2 col-form-label">Password</label>
+                <div class="form-group row">
+                    <div class="col-sm-15">
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" />
+                            <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+                                SHOW
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <button type="submit" class="btn btn-primary w-100">Login</button>
+            </form>
+        </div>
+    </div>
+</form>
+
+<script>
+    // JavaScript to toggle password visibility
+    document.getElementById("togglePassword").addEventListener("click", function () {
+        const passwordField = document.getElementById("password");
+        const isPassword = passwordField.type === "password";
+
+        // Toggle the password field type
+        passwordField.type = isPassword ? "text" : "password";
+
+        // Change the button text
+        this.textContent = isPassword ? "HIDE" : "SHOW";
+    });
+</script>

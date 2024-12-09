@@ -1,7 +1,15 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_MinimalLayout.cshtml";
 }
 
 <div class="text-center">
     <h1>HELLO WE ARE CINTO AND CREUS, PLEASE ENROLL :(</h1>
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-3">
+            <a class="btn btn-primary w-100" asp-area="" asp-controller="Login" asp-action="StudentLogin">Login as Student</a>
+        </div>
+        <div class="col-md-3">
+            <a class="btn btn-secondary w-100" asp-area="" asp-controller="Login" asp-action="AdminLogin">Login as Admin</a>
+        </div>
+    </div>
 </div>

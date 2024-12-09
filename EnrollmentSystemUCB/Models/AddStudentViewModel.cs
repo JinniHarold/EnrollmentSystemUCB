@@ -18,5 +18,7 @@ namespace EnrollmentSystemUCB.Models
         [Required(ErrorMessage = "Year is required.")]
         [Range(1, 4, ErrorMessage = "Year must be between 1 and 4.")]
         public int StudYear { get; set; }
+        [Required(ErrorMessage = "Password is required.")]
+        public string Password { get; set; }
     }
 }

@@ -22,11 +22,66 @@ namespace EnrollmentSystemUCB.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("EnrollmentSystemUCB.Models.Entities.EnrollmentDetails", b =>
+                {
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SubjectEDPCode")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SubjectCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SubjectUnits")
+                        .HasColumnType("int");
+
+                    b.HasKey("StudentId", "SubjectEDPCode");
+
+                    b.ToTable("EnrollmentDetails");
+                });
+
+            modelBuilder.Entity("EnrollmentSystemUCB.Models.Entities.EnrollmentHeader", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateEnrolled")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Encoder")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EnrollmentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EnrollmentId"));
+
+                    b.Property<int>("StudYear")
+                        .HasColumnType("int");
+
+                    b.Property<double>("TotalUnits")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EnrollmentHeaders");
+                });
+
             modelBuilder.Entity("EnrollmentSystemUCB.Models.Entities.Student", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("StudCourse")
                         .IsRequired()
@@ -55,6 +110,9 @@ namespace EnrollmentSystemUCB.Migrations
                 {
                     b.Property<string>("SubjectCode")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("SubjClassSize")
+                        .HasColumnType("int");
 
                     b.Property<string>("SubjectCategory")
                         .IsRequired()
@@ -120,10 +178,10 @@ namespace EnrollmentSystemUCB.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<TimeOnly>("SubjectTimeEnd")
+                    b.Property<TimeSpan>("SubjectTimeEnd")
                         .HasColumnType("time");
 
-                    b.Property<TimeOnly>("SubjectTimeStart")
+                    b.Property<TimeSpan>("SubjectTimeStart")
                         .HasColumnType("time");
 
                     b.HasKey("SubjectEDPCode");
@@ -136,12 +194,17 @@ namespace EnrollmentSystemUCB.Migrations
             modelBuilder.Entity("EnrollmentSystemUCB.Models.Entities.SubjectSchedule", b =>
                 {
                     b.HasOne("EnrollmentSystemUCB.Models.Entities.Subject", "Subject")
-                        .WithMany()
+                        .WithMany("SubjectSchedules")
                         .HasForeignKey("SubjectCode")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Subject");
+                });
+
+            modelBuilder.Entity("EnrollmentSystemUCB.Models.Entities.Subject", b =>
+                {
+                    b.Navigation("SubjectSchedules");
                 });
 #pragma warning restore 612, 618
         }
