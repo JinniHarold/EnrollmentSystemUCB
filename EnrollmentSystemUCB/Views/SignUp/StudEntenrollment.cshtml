@@ -95,7 +95,7 @@
     <div class="rounded-square mb-4 p-3">
         <p>Student Information</p>
         <div class="form-floating mb-sm-3">
-            <input asp-for="Id" type="text" class="form-control" id="studentId" required>
+            <input asp-for="Id" type="text" class="form-control" id="studentId" required readonly>
             <label>ID Number:</label>
             <input type="hidden" name="Id" value="@ViewData["StudentId"]" />
         </div>
