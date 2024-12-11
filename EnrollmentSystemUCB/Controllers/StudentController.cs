@@ -93,6 +93,7 @@ namespace EnrollmentSystemUCB.Controllers
                 student.StudLName = viewModel.StudLName;
                 student.StudCourse = viewModel.StudCourse;
                 student.StudYear = viewModel.StudYear;
+                student.Password = viewModel.Password;
 
                 await dbContext.SaveChangesAsync();
             }

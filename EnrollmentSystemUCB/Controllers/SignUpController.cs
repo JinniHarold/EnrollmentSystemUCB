@@ -69,10 +69,24 @@ namespace EnrollmentSystemUCB.Controllers
         }
 
         [HttpGet]
-        public IActionResult StudentEnrollment(int id)
+        public async Task<IActionResult> StudentEnrollment(int id)
         {
-            // Pass the Id to the view through ViewData or ViewBag
+            // Retrieve the student information based on the ID
+            var student = await dbContext.Students.FirstOrDefaultAsync(s => s.Id == id);
+            if (student == null)
+            {
+                return NotFound("Student not found.");
+            }
+
+            // Format the student name as "[Last name], [First name] [Middle name]"
+            string studentName = $"{student.StudLName}, {student.StudFName} {student.StudMInitial}";
+
+            // Pass the details to the view
             ViewData["StudentId"] = id;
+            ViewData["StudentName"] = studentName;
+            ViewData["StudentYear"] = student.StudYear;
+            ViewData["StudentCourse"] = student.StudCourse;
+
             return View();
         }
 

@@ -103,22 +103,22 @@
             <div class="col-md-4">
                 <!-- Student Name -->
                 <div class="form-floating mb-sm-3">
-                    <input type="text" class="form-control" id="studentName" readonly>
-                    <label>Name:</label>
+                    <label for="studentName">Student Name</label>
+                    <input type="text" id="studentName" value="@ViewData["StudentName"]" readonly />
                 </div>
             </div>
             <div class="col-md-4">
                 <!-- Student Course -->
                 <div class="form-floating mb-sm-3">
-                    <input type="text" class="form-control" id="studentCourse" readonly>
-                    <label>Course:</label>
+                    <label for="studentYear">Student Year</label>
+                    <input type="text" id="studentYear" value="@ViewData["StudentYear"]" readonly />
                 </div>
             </div>
             <div class="col-md-4">
                 <!-- Student Year -->
                 <div class="form-floating mb-sm-3">
-                    <input asp-for="StudYear" type="text" class="form-control" id="studentYear" readonly>
-                    <label>Year:</label>
+                    <label for="studentCourse">Student Course</label>
+                    <input type="text" id="studentCourse" value="@ViewData["StudentCourse"]" readonly />
                 </div>
             </div>
         </div>
@@ -210,33 +210,6 @@
         </div>
     </div>
 </form>
-
-<script>
-    document.getElementById("studentId").addEventListener("input", function () {
-        var studentId = this.value;
-
-        if (studentId.length > 0) {
-            fetch(`/Enrollment/GetStudentNameById?id=${studentId}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        document.getElementById("studentName").value = data.name;
-                        document.getElementById("studentCourse").value = data.course;
-                        document.getElementById("studentYear").value = data.year;
-                    } else {
-                        document.getElementById("studentName").value = "";
-                        document.getElementById("studentCourse").value = "";
-                        document.getElementById("studentYear").value = "";
-                    }
-                })
-                .catch(error => console.error("Error fetching student name:", error));
-        } else {
-            document.getElementById("studentName").value = "";
-            document.getElementById("studentCourse").value = "";
-            document.getElementById("studentYear").value = "";
-        }
-    });
-</script>
 
 <script>
     document.getElementById("edpCode").addEventListener("input", function () {
