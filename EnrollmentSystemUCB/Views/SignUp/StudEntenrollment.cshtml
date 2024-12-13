@@ -100,27 +100,27 @@
             <input type="hidden" name="Id" value="@ViewData["StudentId"]" />
         </div>
         <div class="row">
-            <div class="col-md-4">
-                <!-- Student Name -->
-                <div class="form-floating mb-sm-3">
-                    <label for="studentName">Student Name</label>
-                    <input type="text" id="studentName" value="@ViewData["StudentName"]" readonly />
-                </div>
+            <!-- Student Name -->
+        <div class="col-md-4">
+            <div class="form-floating mb-sm-3">
+                <input type="text" class="form-control" id="studentName" value="@ViewData["StudentName"]" readonly>
+                <label for="studentName">Student Name</label>
             </div>
-            <div class="col-md-4">
-                <!-- Student Course -->
-                <div class="form-floating mb-sm-3">
-                    <label for="studentYear">Student Year</label>
-                    <input type="text" id="studentYear" value="@ViewData["StudentYear"]" readonly />
-                </div>
+        </div>
+        <!-- Student Year -->
+        <div class="col-md-4">
+            <div class="form-floating mb-sm-3">
+                <input type="text" class="form-control" id="studentYear" value="@ViewData["StudentYear"]" readonly>
+                <label for="studentYear">Student Year</label>
             </div>
-            <div class="col-md-4">
-                <!-- Student Year -->
-                <div class="form-floating mb-sm-3">
-                    <label for="studentCourse">Student Course</label>
-                    <input type="text" id="studentCourse" value="@ViewData["StudentCourse"]" readonly />
-                </div>
+        </div>
+        <!-- Student Course -->
+        <div class="col-md-4">
+            <div class="form-floating mb-sm-3">
+                <input type="text" class="form-control" id="studentCourse" value="@ViewData["StudentCourse"]" readonly>
+                <label for="studentCourse">Student Course</label>
             </div>
+        </div>
         </div>
     </div>
 
